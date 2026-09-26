@@ -76,12 +76,12 @@ export default function SpatialCinemaTriptych() {
 
   return (
     <main
-      className="min-h-screen bg-[#06070d] text-slate-100 flex flex-col justify-between p-4 sm:p-6 md:p-8 font-sans select-none overflow-x-hidden relative"
+      className="min-h-screen bg-[#06070d] text-slate-100 p-6 flex flex-col justify-between overflow-x-hidden"
       style={{ backgroundColor: '#06070d', minHeight: '100vh', color: '#f8fafc' }}
     >
-      {/* 1. TOP SPATIAL NAVBAR */}
-      <header className="w-full flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pb-4 border-b border-white/[0.08] relative z-20">
-        {/* Track Status Pill */}
+      {/* 1. TOP SPATIAL HEADER BAR */}
+      <header className="flex items-center justify-between w-full max-w-7xl mx-auto mb-8 px-4 py-3 rounded-2xl bg-slate-900/60 border border-white/10 backdrop-blur-xl">
+        {/* Left: Track Status Pill & 90 FPS WebXR Stream */}
         <div className="flex items-center gap-3">
           <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900/90 border border-slate-700/80 text-xs font-mono">
             <span className="relative flex h-2 w-2">
@@ -93,18 +93,18 @@ export default function SpatialCinemaTriptych() {
             <span className="text-cyan-400 font-semibold uppercase">Entertainment Track</span>
           </div>
 
-          <div className="hidden md:flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-900/60 border border-slate-800 text-[11px] font-mono text-slate-400">
+          <div className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-900/60 border border-slate-800 text-[11px] font-mono text-slate-400">
             <Activity className="w-3.5 h-3.5 text-purple-400" />
             <span>90 FPS WebXR Stream</span>
           </div>
         </div>
 
-        {/* Action Controls & Launcher */}
+        {/* Right: Ingest & WebXR Launch Buttons */}
         <div className="flex items-center gap-3">
           {/* Splat Ingestion Dropzone Trigger Button */}
           <button
             onClick={() => setIsIngestModalOpen(true)}
-            className="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900/80 hover:bg-slate-800 border border-cyan-500/40 text-xs font-mono text-cyan-300 transition shadow-sm hover:shadow-[0_0_15px_rgba(6,182,212,0.3)]"
+            className="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-800/80 hover:bg-slate-700 border border-cyan-500/40 text-xs font-mono text-cyan-300 transition shadow-sm hover:shadow-[0_0_15px_rgba(6,182,212,0.3)]"
           >
             <UploadCloud className="w-3.5 h-3.5 text-cyan-400" />
             <span>Ingest .Splat / .PLY</span>
@@ -137,12 +137,12 @@ export default function SpatialCinemaTriptych() {
         </div>
       </header>
 
-      {/* 2. HERO TRIPTYCH (3-COLUMN 3D MOTION GRID) */}
-      <section className="grid grid-cols-1 lg:grid-cols-12 gap-5 my-5 items-stretch relative z-10">
-        {/* LEFT PANEL (COL 1-4): Electric Blue Volumetric Core */}
-        <div className="lg:col-span-4 rounded-3xl spatial-card-blue p-5 flex flex-col justify-between relative overflow-hidden shadow-2xl animate-float-slow">
+      {/* 2. MAIN 3-PANEL HERO GRID */}
+      <section className="w-full max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-6 items-stretch mb-8">
+        {/* LEFT PANEL (Volumetric Core) */}
+        <div className="p-6 rounded-3xl bg-slate-900/70 border border-cyan-500/30 flex flex-col justify-between backdrop-blur-xl shadow-[0_0_40px_-10px_rgba(6,182,212,0.25)]">
           {/* Header */}
-          <div className="relative z-10 flex items-center justify-between mb-3">
+          <div className="flex items-center justify-between mb-4">
             <div className="flex items-center gap-2">
               <div className="p-1.5 rounded-lg bg-sky-500/20 border border-sky-400/40">
                 <Layers className="w-4 h-4 text-sky-400" />
@@ -156,30 +156,37 @@ export default function SpatialCinemaTriptych() {
             </span>
           </div>
 
-          {/* Pure CSS Dark Holographic Viewport */}
+          {/* 4D Core Animation Holographic Viewport */}
           <div className="relative w-full h-[260px] bg-[#020617] rounded-2xl border border-cyan-500/20 overflow-hidden flex flex-col items-center justify-center shadow-inner my-2">
             {/* Dark ambient cyan glow */}
             <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(6,182,212,0.15),transparent_70%)] pointer-events-none" />
-            
+
             {/* Holographic 4D Core Animation */}
             <div className="relative z-10 flex flex-col items-center justify-center gap-3">
               <div className="relative flex items-center justify-center">
-                <div className="w-16 h-16 rounded-full border-2 border-dashed border-cyan-400/50 animate-spin" style={{ animationDuration: '8s' }} />
+                <div
+                  className="w-16 h-16 rounded-full border-2 border-dashed border-cyan-400/50 animate-spin"
+                  style={{ animationDuration: '8s' }}
+                />
                 <div className="absolute w-12 h-12 rounded-full bg-cyan-500/10 border border-cyan-400 flex items-center justify-center shadow-[0_0_20px_rgba(6,182,212,0.4)]">
                   <span className="text-[10px] font-mono font-bold text-cyan-300">4D</span>
                 </div>
               </div>
               <div className="text-center">
-                <div className="text-xs font-mono font-bold text-cyan-300 tracking-wider">GAUSSIAN SPLAT STREAM</div>
-                <div className="text-[10px] font-mono text-slate-400 mt-0.5">READY • 6DoF NATIVE</div>
+                <div className="text-xs font-mono font-bold text-cyan-300 tracking-wider">
+                  GAUSSIAN SPLAT STREAM
+                </div>
+                <div className="text-[10px] font-mono text-slate-400 mt-0.5">
+                  READY • 6DoF NATIVE
+                </div>
               </div>
             </div>
 
             {/* Interactive Orbit Button */}
             <div className="absolute bottom-3 left-3 z-20">
-              <button className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-900/90 border border-cyan-500/30 text-[10px] font-mono text-cyan-200 hover:text-white backdrop-blur-md transition">
+              <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-900/90 border border-cyan-500/30 text-[10px] font-mono text-cyan-200 backdrop-blur-md">
                 <span className="text-cyan-400">◉</span> Interactive 3D Orbit
-              </button>
+              </div>
             </div>
           </div>
 
@@ -196,8 +203,8 @@ export default function SpatialCinemaTriptych() {
             />
           </div>
 
-          {/* True 6DoF Occlusion & Relighting Switcher Telemetry */}
-          <div className="relative z-10 pt-3 border-t border-sky-500/20 space-y-2 text-xs font-mono">
+          {/* 6DoF Occlusion & Relighting Telemetry */}
+          <div className="pt-3 border-t border-sky-500/20 space-y-2.5 text-xs font-mono">
             {/* Parallax Occlusion Toggle */}
             <div className="flex items-center justify-between">
               <span className="text-[11px] text-slate-300">Parallax Occlusion</span>
@@ -236,10 +243,10 @@ export default function SpatialCinemaTriptych() {
           </div>
         </div>
 
-        {/* CENTER PANEL (COL 5-8): Tactile Spatial Controller */}
-        <div className="lg:col-span-4 rounded-3xl spatial-card-pink p-5 flex flex-col justify-between relative overflow-hidden shadow-2xl">
+        {/* CENTER PANEL (Tactile Spatial Controller) */}
+        <div className="p-6 rounded-3xl bg-slate-900/70 border border-fuchsia-500/30 flex flex-col justify-between backdrop-blur-xl shadow-[0_0_40px_-10px_rgba(217,70,239,0.25)]">
           {/* Header Badge */}
-          <div className="flex items-center justify-between mb-3">
+          <div className="flex items-center justify-between mb-4">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-pink-950/60 border border-pink-500/30 text-[11px] font-mono text-pink-300 font-bold uppercase">
               <Sparkles className="w-3.5 h-3.5 text-pink-400" />
               <span>Air-Pinch Hand Rig</span>
@@ -249,7 +256,7 @@ export default function SpatialCinemaTriptych() {
 
           {/* Embossed Centerpiece Title */}
           <div className="my-auto py-2 text-center">
-            <h1 className="text-3xl sm:text-4xl font-black tracking-tight leading-tight text-white">
+            <h1 className="text-2xl sm:text-3xl font-black tracking-tight leading-tight text-white">
               Volumetric Cinema.
               <br />
               <span className="bg-gradient-to-r from-pink-400 via-rose-300 to-amber-300 bg-clip-text text-transparent">
@@ -273,7 +280,7 @@ export default function SpatialCinemaTriptych() {
           </div>
 
           {/* Bimanual Pinch & Scale Controls */}
-          <div className="p-3 rounded-2xl bg-black/40 border border-pink-500/20 mb-3 space-y-2">
+          <div className="p-3.5 rounded-2xl bg-black/40 border border-pink-500/20 mb-3 space-y-2.5">
             <div className="flex items-center justify-between text-xs font-mono text-slate-300">
               <span className="text-[10px] uppercase font-bold text-pink-300">Bimanual Scale Rig</span>
               <span className="text-xs font-bold text-white bg-pink-950/70 px-2 py-0.5 rounded border border-pink-500/30">
@@ -315,12 +322,12 @@ export default function SpatialCinemaTriptych() {
           </div>
 
           {/* Interactive Timeline Scrubber with Millisecond Timecode */}
-          <div className="p-3 rounded-2xl bg-black/40 border border-pink-500/20">
+          <div className="p-3.5 rounded-2xl bg-black/40 border border-pink-500/20">
             <div className="flex items-center justify-between text-xs font-mono text-slate-300 mb-2">
               <div className="flex items-center gap-2">
                 <button
                   onClick={() => setIsPlaying(!isPlaying)}
-                  className="p-1 rounded-lg bg-pink-500 hover:bg-pink-400 text-black font-bold transition"
+                  className="p-1.5 rounded-lg bg-pink-500 hover:bg-pink-400 text-black font-bold transition"
                   title="Toggle Playback"
                 >
                   {isPlaying ? <Pause className="w-3.5 h-3.5" /> : <Play className="w-3.5 h-3.5" />}
@@ -344,10 +351,10 @@ export default function SpatialCinemaTriptych() {
           </div>
         </div>
 
-        {/* RIGHT PANEL (COL 9-12): Multi-Angle Floating Viewports & HRTF Sound */}
-        <div className="lg:col-span-4 rounded-3xl spatial-card-purple p-5 flex flex-col justify-between relative overflow-hidden shadow-2xl animate-float-delayed">
+        {/* RIGHT PANEL (Spatial Acoustics & Angles) */}
+        <div className="p-6 rounded-3xl bg-slate-900/70 border border-purple-500/30 flex flex-col justify-between backdrop-blur-xl shadow-[0_0_40px_-10px_rgba(168,85,247,0.25)]">
           {/* Header */}
-          <div className="flex items-center justify-between mb-3">
+          <div className="flex items-center justify-between mb-4">
             <div className="flex items-center gap-2">
               <div className="p-1.5 rounded-lg bg-purple-500/20 border border-purple-400/40">
                 <Video className="w-4 h-4 text-purple-400" />
@@ -361,7 +368,7 @@ export default function SpatialCinemaTriptych() {
             </span>
           </div>
 
-          {/* Isometric Perspective-Tilted Floating Glass Panels */}
+          {/* Perspective-Tilted Floating Glass Panels */}
           <div className="relative my-2 h-44 sm:h-48 flex items-center justify-center">
             {/* Background tilted panel */}
             <div className="absolute w-48 h-28 rounded-xl bg-purple-900/30 border border-purple-500/30 transform -rotate-6 -translate-y-4 translate-x-4 backdrop-blur-md flex items-center justify-center text-[10px] font-mono text-purple-300">
@@ -409,129 +416,127 @@ export default function SpatialCinemaTriptych() {
         </div>
       </section>
 
-      {/* 3. SEATED GESTURE MATRIX (BOTTOM DECK - 4 COMPACT HORIZONTAL PILLS) */}
-      <section className="w-full pt-2 relative z-10">
-        <div className="text-center sm:text-left mb-2">
+      {/* 3. SEATED GESTURE DECK (4 COMPACT HORIZONTAL PILLS) */}
+      <section className="w-full max-w-7xl mx-auto mb-6">
+        <div className="mb-2">
           <span className="text-[11px] font-mono uppercase tracking-wider text-slate-400 font-bold">
             Verified Seated Gestures (Airplane Seat Tested • 2-Foot Radius)
           </span>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           {/* Pill 1 */}
-          <div className="p-3 rounded-2xl bg-slate-900/70 border border-sky-500/30 backdrop-blur-md flex items-center gap-3 hover:border-sky-400 transition">
-            <div className="p-2 rounded-xl bg-sky-500/20 text-sky-400">
+          <div className="p-3.5 rounded-2xl bg-slate-900/70 border border-sky-500/30 backdrop-blur-md flex items-center gap-3 hover:border-sky-400 transition">
+            <div className="p-2 rounded-xl bg-sky-500/20 text-sky-400 shrink-0">
               <Hand className="w-4 h-4" />
             </div>
-            <div>
-              <div className="text-xs font-bold text-white">Temporal Caliper</div>
-              <div className="text-[10px] text-slate-400 font-mono">Pinch &amp; micro-scrub time</div>
+            <div className="overflow-hidden">
+              <div className="text-xs font-bold text-white truncate">Temporal Caliper</div>
+              <div className="text-[10px] text-slate-400 font-mono truncate">Pinch &amp; micro-scrub time</div>
             </div>
           </div>
 
           {/* Pill 2 */}
-          <div className="p-3 rounded-2xl bg-slate-900/70 border border-pink-500/30 backdrop-blur-md flex items-center gap-3 hover:border-pink-400 transition">
-            <div className="p-2 rounded-xl bg-pink-500/20 text-pink-400">
+          <div className="p-3.5 rounded-2xl bg-slate-900/70 border border-pink-500/30 backdrop-blur-md flex items-center gap-3 hover:border-pink-400 transition">
+            <div className="p-2 rounded-xl bg-pink-500/20 text-pink-400 shrink-0">
               <Maximize2 className="w-4 h-4" />
             </div>
-            <div>
-              <div className="text-xs font-bold text-white">Volumetric Zoom</div>
-              <div className="text-[10px] text-slate-400 font-mono">Two-hand bimanual scale</div>
+            <div className="overflow-hidden">
+              <div className="text-xs font-bold text-white truncate">Volumetric Zoom</div>
+              <div className="text-[10px] text-slate-400 font-mono truncate">Two-hand bimanual scale</div>
             </div>
           </div>
 
           {/* Pill 3 */}
-          <div className="p-3 rounded-2xl bg-slate-900/70 border border-purple-500/30 backdrop-blur-md flex items-center gap-3 hover:border-purple-400 transition">
-            <div className="p-2 rounded-xl bg-purple-500/20 text-purple-400">
+          <div className="p-3.5 rounded-2xl bg-slate-900/70 border border-purple-500/30 backdrop-blur-md flex items-center gap-3 hover:border-purple-400 transition">
+            <div className="p-2 rounded-xl bg-purple-500/20 text-purple-400 shrink-0">
               <Headphones className="w-4 h-4" />
             </div>
-            <div>
-              <div className="text-xs font-bold text-white">Binaural Snap Ray</div>
-              <div className="text-[10px] text-slate-400 font-mono">Point-to-focus voice snap</div>
+            <div className="overflow-hidden">
+              <div className="text-xs font-bold text-white truncate">Binaural Snap Ray</div>
+              <div className="text-[10px] text-slate-400 font-mono truncate">Point-to-focus voice snap</div>
             </div>
           </div>
 
           {/* Pill 4 */}
-          <div className="p-3 rounded-2xl bg-slate-900/70 border border-emerald-500/30 backdrop-blur-md flex items-center gap-3 hover:border-emerald-400 transition">
-            <div className="p-2 rounded-xl bg-emerald-500/20 text-emerald-400">
+          <div className="p-3.5 rounded-2xl bg-slate-900/70 border border-emerald-500/30 backdrop-blur-md flex items-center gap-3 hover:border-emerald-400 transition">
+            <div className="p-2 rounded-xl bg-emerald-500/20 text-emerald-400 shrink-0">
               <Radio className="w-4 h-4" />
             </div>
-            <div>
-              <div className="text-xs font-bold text-white">Palm-Up Media Dock</div>
-              <div className="text-[10px] text-slate-400 font-mono">Gaze-aligned floating HUD</div>
+            <div className="overflow-hidden">
+              <div className="text-xs font-bold text-white truncate">Palm-Up Dock</div>
+              <div className="text-[10px] text-slate-400 font-mono truncate">Gaze-aligned floating HUD</div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* 4. BUILT-IN COMPETITIVE MATRIX WIDGET (COLLAPSIBLE BENCHMARK DOCK) */}
-      <section className="w-full mt-4 relative z-10">
-        <div className="p-4 rounded-2xl bg-slate-950/80 border border-white/10 backdrop-blur-xl">
-          <div
-            onClick={() => setIsMatrixOpen(!isMatrixOpen)}
-            className="flex items-center justify-between cursor-pointer group"
-          >
-            <div className="flex items-center gap-2">
-              <Compass className="w-4 h-4 text-cyan-400" />
-              <span className="text-xs font-mono font-bold tracking-wider text-slate-200 uppercase">
-                Volumetric Paradigm Benchmark: ChronoSplat 4D vs. Legacy VR
-              </span>
-            </div>
-            <button className="flex items-center gap-1 text-[11px] font-mono text-slate-400 group-hover:text-cyan-300 transition">
-              <span>{isMatrixOpen ? 'Collapse Benchmark' : 'Expand Benchmark'}</span>
-              {isMatrixOpen ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
-            </button>
+      {/* 4. BENCHMARK / COMPARISON MATRIX (COLLAPSIBLE BENCHMARK DOCK) */}
+      <section className="w-full max-w-7xl mx-auto p-4 rounded-2xl bg-slate-950/80 border border-white/10 text-xs font-mono text-slate-400">
+        <div
+          onClick={() => setIsMatrixOpen(!isMatrixOpen)}
+          className="flex items-center justify-between cursor-pointer group"
+        >
+          <div className="flex items-center gap-2">
+            <Compass className="w-4 h-4 text-cyan-400" />
+            <span className="text-xs font-mono font-bold tracking-wider text-slate-200 uppercase">
+              Volumetric Paradigm Benchmark: ChronoSplat 4D vs. Legacy VR
+            </span>
           </div>
-
-          {isMatrixOpen && (
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mt-3 pt-3 border-t border-white/[0.06] text-xs font-mono">
-              {/* Column 1: Flat 360 Video */}
-              <div className="p-3 rounded-xl bg-slate-900/50 border border-red-500/20 space-y-1.5">
-                <div className="flex items-center justify-between text-red-400 font-bold">
-                  <span>Flat 360° Video</span>
-                  <span className="text-[9px] px-1.5 py-0.5 rounded bg-red-950/60 border border-red-500/30">
-                    Legacy
-                  </span>
-                </div>
-                <ul className="text-[11px] text-slate-400 space-y-1">
-                  <li>• 3DoF Rotational Only (Zero Motion Parallax)</li>
-                  <li>• High Nausea Risk on translation</li>
-                  <li>• Fixed skybox pivot with heavy buffering</li>
-                </ul>
-              </div>
-
-              {/* Column 2: Apple Vision Pro */}
-              <div className="p-3 rounded-xl bg-slate-900/50 border border-amber-500/20 space-y-1.5">
-                <div className="flex items-center justify-between text-amber-300 font-bold">
-                  <span>Apple Vision Pro Cinema</span>
-                  <span className="text-[9px] px-1.5 py-0.5 rounded bg-amber-950/60 border border-amber-500/30">
-                    Proprietary
-                  </span>
-                </div>
-                <ul className="text-[11px] text-slate-400 space-y-1">
-                  <li>• 3D Stereoscopic (Restricted front-facing depth)</li>
-                  <li>• Windowed frame with flat playback bounds</li>
-                  <li>• Locked ecosystem with $3,500 barrier</li>
-                </ul>
-              </div>
-
-              {/* Column 3: ChronoSplat 4D */}
-              <div className="p-3 rounded-xl bg-cyan-950/40 border border-cyan-400/50 shadow-[0_0_20px_rgba(6,182,212,0.2)] space-y-1.5">
-                <div className="flex items-center justify-between text-cyan-300 font-bold">
-                  <span>ChronoSplat 4D (Meta WebXR)</span>
-                  <span className="text-[9px] px-1.5 py-0.5 rounded bg-cyan-900/80 border border-cyan-400/60 text-white font-extrabold">
-                    WINNER
-                  </span>
-                </div>
-                <ul className="text-[11px] text-slate-200 space-y-1 font-semibold">
-                  <li className="text-cyan-200">✓ True 6DoF Gaussian Splatting (Full Parallax)</li>
-                  <li className="text-emerald-300">✓ Zero-Install Browser (&lt;18ms M2P Latency)</li>
-                  <li className="text-purple-300">✓ Natural Hand Air-Pinch Micro-Scrubber</li>
-                </ul>
-              </div>
-            </div>
-          )}
+          <button className="flex items-center gap-1 text-[11px] font-mono text-slate-400 group-hover:text-cyan-300 transition">
+            <span>{isMatrixOpen ? 'Collapse Benchmark' : 'Expand Benchmark'}</span>
+            {isMatrixOpen ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
+          </button>
         </div>
+
+        {isMatrixOpen && (
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mt-3 pt-3 border-t border-white/[0.06] text-xs font-mono">
+            {/* Column 1: Flat 360 Video */}
+            <div className="p-3 rounded-xl bg-slate-900/50 border border-red-500/20 space-y-1.5">
+              <div className="flex items-center justify-between text-red-400 font-bold">
+                <span>Flat 360° Video</span>
+                <span className="text-[9px] px-1.5 py-0.5 rounded bg-red-950/60 border border-red-500/30">
+                  Legacy
+                </span>
+              </div>
+              <ul className="text-[11px] text-slate-400 space-y-1">
+                <li>• 3DoF Rotational Only (Zero Motion Parallax)</li>
+                <li>• High Nausea Risk on translation</li>
+                <li>• Fixed skybox pivot with heavy buffering</li>
+              </ul>
+            </div>
+
+            {/* Column 2: Apple Vision Pro */}
+            <div className="p-3 rounded-xl bg-slate-900/50 border border-amber-500/20 space-y-1.5">
+              <div className="flex items-center justify-between text-amber-300 font-bold">
+                <span>Apple Vision Pro Cinema</span>
+                <span className="text-[9px] px-1.5 py-0.5 rounded bg-amber-950/60 border border-amber-500/30">
+                  Proprietary
+                </span>
+              </div>
+              <ul className="text-[11px] text-slate-400 space-y-1">
+                <li>• 3D Stereoscopic (Restricted front-facing depth)</li>
+                <li>• Windowed frame with flat playback bounds</li>
+                <li>• Locked ecosystem with $3,500 barrier</li>
+              </ul>
+            </div>
+
+            {/* Column 3: ChronoSplat 4D */}
+            <div className="p-3 rounded-xl bg-cyan-950/40 border border-cyan-400/50 shadow-[0_0_20px_rgba(6,182,212,0.2)] space-y-1.5">
+              <div className="flex items-center justify-between text-cyan-300 font-bold">
+                <span>ChronoSplat 4D (Meta WebXR)</span>
+                <span className="text-[9px] px-1.5 py-0.5 rounded bg-cyan-900/80 border border-cyan-400/60 text-white font-extrabold">
+                  WINNER
+                </span>
+              </div>
+              <ul className="text-[11px] text-slate-200 space-y-1 font-semibold">
+                <li className="text-cyan-200">✓ True 6DoF Gaussian Splatting (Full Parallax)</li>
+                <li className="text-emerald-300">✓ Zero-Install Browser (&lt;18ms M2P Latency)</li>
+                <li className="text-purple-300">✓ Natural Hand Air-Pinch Micro-Scrubber</li>
+              </ul>
+            </div>
+          </div>
+        )}
       </section>
 
       {/* 5. INTERACTIVE SPLAT INGESTION DROPZONE MODAL */}
