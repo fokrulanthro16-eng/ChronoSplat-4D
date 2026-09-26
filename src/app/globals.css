@@ -2,26 +2,30 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #030712;
-  --foreground: #f8fafc;
-}
+@layer base {
+  :root {
+    color-scheme: dark;
+    --background: #030712;
+    --foreground: #f8fafc;
+  }
 
-html,
-body {
-  background-color: #030712 !important;
-  color: #f8fafc !important;
-  min-height: 100vh;
-  margin: 0;
-  padding: 0;
-  overflow-x: hidden;
-  user-select: none;
-  font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+  html,
+  body {
+    background-color: #030712 !important;
+    color: #f8fafc !important;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+    user-select: none;
+    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+  }
 }
 
 /* Custom Vision Pro high-contrast glassmorphic utilities */
 .vision-glass {
-  background: rgba(15, 23, 42, 0.72) !important;
+  background: rgba(15, 23, 42, 0.75) !important;
   backdrop-filter: blur(28px);
   -webkit-backdrop-filter: blur(28px);
   border: 1px solid rgba(255, 255, 255, 0.15) !important;
@@ -29,7 +33,7 @@ body {
 }
 
 .vision-glass-glow {
-  background: rgba(15, 23, 42, 0.85) !important;
+  background: rgba(15, 23, 42, 0.88) !important;
   backdrop-filter: blur(32px);
   -webkit-backdrop-filter: blur(32px);
   border: 1px solid rgba(6, 182, 212, 0.6) !important;
