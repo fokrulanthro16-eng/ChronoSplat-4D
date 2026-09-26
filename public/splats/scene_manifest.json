@@ -1,0 +1,11 @@
+{
+  "title": "ChronoSplat 4D: Holographic Performance",
+  "fps": 30,
+  "totalDurationMs": 4000,
+  "frames": [
+    "/splats/frame_0000.splat",
+    "/splats/frame_0001.splat",
+    "/splats/frame_0002.splat",
+    "/splats/frame_0003.splat"
+  ]
+}
