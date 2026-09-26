@@ -20,7 +20,6 @@ export default function VolumetricCinemaViewer({
 }: VolumetricCinemaViewerProps) {
   const mountRef = useRef<HTMLDivElement>(null);
   const [inXRSession, setInXRSession] = useState(false);
-  const [isSupported, setIsSupported] = useState<boolean | null>(null);
 
   // References across render loop
   const streamerRef = useRef<ChronoSplat4DStreamer | null>(null);
@@ -30,28 +29,18 @@ export default function VolumetricCinemaViewer({
   useEffect(() => {
     if (!mountRef.current) return;
 
-    // Check WebXR support
-    if (typeof navigator !== 'undefined' && 'xr' in navigator && (navigator as any).xr) {
-      (navigator as any).xr.isSessionSupported('immersive-vr').then((supported: boolean) => {
-        setIsSupported(supported);
-      }).catch(() => setIsSupported(false));
-    } else {
-      setIsSupported(false);
-    }
-
-    // 1. WebGL & Scene Setup
+    // 1. WebGL & Scene Setup (Strictly transparent canvas)
     const scene = new THREE.Scene();
-    scene.background = new THREE.Color(0x0a0a0f);
-    scene.fog = new THREE.FogExp2(0x0a0a0f, 0.05);
+    scene.background = null; // Transparent scene
 
     const camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 0.05, 50);
-    camera.position.set(0, 1.25, 0.4); // Seated viewing distance
+    camera.position.set(0, 1.2, 0.4); // Seated viewing distance
 
     const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, powerPreference: 'high-performance' });
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2.0));
     renderer.setSize(window.innerWidth, window.innerHeight);
-    renderer.setClearColor(0x0a0a0f, 1);
-    renderer.domElement.style.backgroundColor = '#0a0a0f';
+    renderer.setClearColor(0x000000, 0); // Transparent clear color
+    renderer.domElement.style.backgroundColor = 'transparent';
     renderer.domElement.style.display = 'block';
     renderer.domElement.style.width = '100%';
     renderer.domElement.style.height = '100%';
@@ -83,86 +72,7 @@ export default function VolumetricCinemaViewer({
     scene.add(hand0);
     scene.add(hand1);
 
-    // 5. Palm-Up Lean-Back Floating Dock Mesh
-    const dockGeo = new THREE.PlaneGeometry(0.24, 0.10);
-    const dockCanvas = document.createElement('canvas');
-    dockCanvas.width = 512;
-    dockCanvas.height = 210;
-    const dockCtx = dockCanvas.getContext('2d')!;
-    const dockTexture = new THREE.CanvasTexture(dockCanvas);
-    const dockMat = new THREE.MeshBasicMaterial({
-      map: dockTexture,
-      transparent: true,
-      opacity: 0.0,
-      side: THREE.DoubleSide,
-    });
-    const dockMesh = new THREE.Mesh(dockGeo, dockMat);
-    scene.add(dockMesh);
-
-    // 6. Holographic Caliper Visual Feedback HUD
-    const caliperCanvas = document.createElement('canvas');
-    caliperCanvas.width = 256;
-    caliperCanvas.height = 128;
-    const caliperCtx = caliperCanvas.getContext('2d')!;
-    const caliperTexture = new THREE.CanvasTexture(caliperCanvas);
-    const caliperMat = new THREE.MeshBasicMaterial({
-      map: caliperTexture,
-      transparent: true,
-      opacity: 0.0,
-    });
-    const caliperMesh = new THREE.Mesh(new THREE.PlaneGeometry(0.09, 0.045), caliperMat);
-    scene.add(caliperMesh);
-
-    const updateDockTexture = (playing: boolean, progress: number, scale: number) => {
-      dockCtx.clearRect(0, 0, 512, 210);
-      dockCtx.fillStyle = 'rgba(8, 12, 22, 0.88)';
-      dockCtx.beginPath();
-      dockCtx.roundRect(4, 4, 504, 202, 24);
-      dockCtx.fill();
-
-      dockCtx.strokeStyle = '#06b6d4';
-      dockCtx.lineWidth = 4;
-      dockCtx.stroke();
-
-      dockCtx.fillStyle = '#ffffff';
-      dockCtx.font = 'bold 30px system-ui, sans-serif';
-      dockCtx.fillText(playing ? 'VOLUMETRIC: PLAYING' : 'VOLUMETRIC: PAUSED', 32, 60);
-
-      dockCtx.font = '22px monospace';
-      dockCtx.fillStyle = '#8b5cf6';
-      dockCtx.fillText(`SCALE: ${(scale * 100).toFixed(0)}%`, 32, 105);
-
-      dockCtx.fillStyle = '#1e293b';
-      dockCtx.beginPath();
-      dockCtx.roundRect(32, 135, 448, 20, 10);
-      dockCtx.fill();
-
-      dockCtx.fillStyle = '#06b6d4';
-      dockCtx.beginPath();
-      dockCtx.roundRect(32, 135, Math.max(12, 448 * progress), 20, 10);
-      dockCtx.fill();
-
-      dockTexture.needsUpdate = true;
-    };
-
-    const updateCaliperHUD = (progress: number) => {
-      caliperCtx.clearRect(0, 0, 256, 128);
-      caliperCtx.fillStyle = 'rgba(6, 182, 212, 0.2)';
-      caliperCtx.beginPath();
-      caliperCtx.roundRect(0, 0, 256, 128, 16);
-      caliperCtx.fill();
-
-      caliperCtx.strokeStyle = '#06b6d4';
-      caliperCtx.lineWidth = 3;
-      caliperCtx.stroke();
-
-      caliperCtx.fillStyle = '#ffffff';
-      caliperCtx.font = 'bold 36px monospace';
-      caliperCtx.fillText(`${(progress * 100).toFixed(1)}%`, 45, 75);
-      caliperTexture.needsUpdate = true;
-    };
-
-    // 7. Desktop Fallback Mouse Orbit Rotation
+    // 5. Desktop Fallback Mouse Orbit Rotation
     let isMouseDown = false;
     let prevMouseX = 0;
     let prevMouseY = 0;
@@ -194,7 +104,7 @@ export default function VolumetricCinemaViewer({
     window.addEventListener('mousemove', onMouseMove);
     window.addEventListener('mouseup', onMouseUp);
 
-    // 8. Session Handlers
+    // 6. Session Handlers
     renderer.xr.addEventListener('sessionstart', () => {
       setInXRSession(true);
       audio.resume();
@@ -205,7 +115,7 @@ export default function VolumetricCinemaViewer({
       setInXRSession(false);
     });
 
-    // 9. Animation Loop
+    // 7. Animation Loop
     const clock = new THREE.Clock();
     let currentNorm = 0;
 
@@ -236,14 +146,6 @@ export default function VolumetricCinemaViewer({
           1
         );
         streamer.seekNormalized(currentNorm);
-
-        if (gesturesState.caliperIndexPos) {
-          caliperMesh.position.copy(gesturesState.caliperIndexPos).add(new THREE.Vector3(0, 0.05, 0));
-          caliperMat.opacity = THREE.MathUtils.lerp(caliperMat.opacity, 1.0, 0.2);
-          updateCaliperHUD(currentNorm);
-        }
-      } else {
-        caliperMat.opacity = THREE.MathUtils.lerp(caliperMat.opacity, 0.0, 0.2);
       }
 
       // Two-Hand Scale Zoom
@@ -255,16 +157,6 @@ export default function VolumetricCinemaViewer({
       audio.applyAudioSnapFocus(gesturesState.snappedActor);
       if (onAudioSnap) {
         onAudioSnap(gesturesState.snappedActor);
-      }
-
-      // Palm-Up Media Dock
-      if (gesturesState.dockVisible) {
-        dockMat.opacity = THREE.MathUtils.lerp(dockMat.opacity, 1.0, 0.15);
-        dockMesh.matrix.copy(gesturesState.dockTransform);
-        dockMesh.matrixAutoUpdate = false;
-        updateDockTexture(streamer.isPlaying(), streamer.getCurrentProgress(), streamer.getTransformNode().scale.x);
-      } else {
-        dockMat.opacity = THREE.MathUtils.lerp(dockMat.opacity, 0.0, 0.25);
       }
 
       // Update streamer
@@ -299,8 +191,8 @@ export default function VolumetricCinemaViewer({
   }, [onPlaybackChange, onAudioSnap]);
 
   return (
-    <div className="relative w-full h-full overflow-hidden bg-[#0a0a0f]" style={{ backgroundColor: '#0a0a0f' }}>
-      <div ref={mountRef} className="w-full h-full cursor-grab active:cursor-grabbing bg-[#0a0a0f]" style={{ backgroundColor: '#0a0a0f' }} />
+    <div className="relative w-full h-full overflow-hidden bg-transparent">
+      <div ref={mountRef} className="w-full h-full cursor-grab active:cursor-grabbing bg-transparent" />
     </div>
   );
 }
