@@ -58,27 +58,27 @@ export default function ChronoSplatHome() {
         'Pinch thumb and index fingertip together within 22mm. Lateral hand displacement micro-scrubs 4D volumetric temporal keyframes with millisecond precision.',
       accent: 'cyan',
       svgWireframe: (
-        <svg viewBox="0 0 100 80" className="w-full h-24 stroke-cyan-400 fill-none stroke-[1.5]">
+        <svg viewBox="0 0 100 80" className="w-full h-24 stroke-cyan-400 fill-none stroke-[2]">
           {/* Thumb joint chain */}
-          <circle cx="28" cy="55" r="3" className="fill-cyan-400" />
+          <circle cx="28" cy="55" r="3.5" className="fill-cyan-400" />
           <line x1="28" y1="55" x2="38" y2="40" />
-          <circle cx="38" cy="40" r="2.5" className="fill-cyan-400" />
+          <circle cx="38" cy="40" r="3" className="fill-cyan-400" />
           <line x1="38" y1="40" x2="48" y2="34" />
-          <circle cx="48" cy="34" r="3" className="fill-cyan-300 animate-ping opacity-60" />
-          <circle cx="48" cy="34" r="3" className="fill-cyan-300" />
+          <circle cx="48" cy="34" r="3.5" className="fill-cyan-300 animate-ping opacity-75" />
+          <circle cx="48" cy="34" r="3.5" className="fill-cyan-300" />
 
           {/* Index joint chain snapping to thumb */}
-          <circle cx="70" cy="65" r="3" className="fill-cyan-400" />
+          <circle cx="70" cy="65" r="3.5" className="fill-cyan-400" />
           <line x1="70" y1="65" x2="65" y2="48" />
-          <circle cx="65" cy="48" r="2.5" className="fill-cyan-400" />
+          <circle cx="65" cy="48" r="3" className="fill-cyan-400" />
           <line x1="65" y1="48" x2="56" y2="36" />
           <line x1="56" y1="36" x2="51" y2="34" />
-          <circle cx="51" cy="34" r="3" className="fill-cyan-300" />
+          <circle cx="51" cy="34" r="3.5" className="fill-cyan-300" />
 
           {/* Caliper Measurement Rail */}
-          <line x1="30" y1="20" x2="70" y2="20" strokeDasharray="3 3" className="stroke-cyan-500/60" />
-          <circle cx="50" cy="20" r="2" className="fill-cyan-300" />
-          <text x="50" y="14" textAnchor="middle" className="text-[7px] font-mono fill-cyan-300 stroke-none">
+          <line x1="28" y1="20" x2="72" y2="20" strokeDasharray="3 3" className="stroke-cyan-300" />
+          <circle cx="50" cy="20" r="3" className="fill-cyan-300" />
+          <text x="50" y="14" textAnchor="middle" className="text-[8px] font-mono font-bold fill-cyan-300 stroke-none">
             Δ 12.4ms
           </text>
         </svg>
@@ -93,21 +93,21 @@ export default function ChronoSplatHome() {
         'Pinch with both hands simultaneously and stretch or compress your hands to scale the holographic performance from a tabletop diorama to life-size theater.',
       accent: 'purple',
       svgWireframe: (
-        <svg viewBox="0 0 100 80" className="w-full h-24 stroke-purple-400 fill-none stroke-[1.5]">
+        <svg viewBox="0 0 100 80" className="w-full h-24 stroke-purple-400 fill-none stroke-[2]">
           {/* Left hand anchor */}
-          <circle cx="20" cy="40" r="4" className="fill-purple-400" />
-          <circle cx="20" cy="40" r="8" className="stroke-purple-500/40" />
+          <circle cx="20" cy="40" r="4.5" className="fill-purple-400" />
+          <circle cx="20" cy="40" r="9" className="stroke-purple-400/60" />
 
           {/* Right hand anchor */}
-          <circle cx="80" cy="40" r="4" className="fill-purple-400" />
-          <circle cx="80" cy="40" r="8" className="stroke-purple-500/40" />
+          <circle cx="80" cy="40" r="4.5" className="fill-purple-400" />
+          <circle cx="80" cy="40" r="9" className="stroke-purple-400/60" />
 
           {/* Dynamic Expansion Vector */}
-          <line x1="26" y1="40" x2="74" y2="40" strokeDasharray="2 2" className="stroke-purple-300" />
-          <polygon points="26,37 20,40 26,43" className="fill-purple-400 stroke-none" />
-          <polygon points="74,37 80,40 74,43" className="fill-purple-400 stroke-none" />
+          <line x1="26" y1="40" x2="74" y2="40" strokeDasharray="3 3" className="stroke-purple-300 stroke-[2]" />
+          <polygon points="26,36 19,40 26,44" className="fill-purple-300 stroke-none" />
+          <polygon points="74,36 81,40 74,44" className="fill-purple-300 stroke-none" />
 
-          <text x="50" y="32" textAnchor="middle" className="text-[7px] font-mono fill-purple-300 stroke-none">
+          <text x="50" y="32" textAnchor="middle" className="text-[8px] font-mono font-bold fill-purple-300 stroke-none">
             SCALE 0.85x
           </text>
         </svg>
@@ -122,20 +122,20 @@ export default function ChronoSplatHome() {
         'Extend your dominant index finger toward any volumetric performer. The acoustic raycast automatically cuts ambient beds by -12dB and isolates HRTF dialogue.',
       accent: 'emerald',
       svgWireframe: (
-        <svg viewBox="0 0 100 80" className="w-full h-24 stroke-emerald-400 fill-none stroke-[1.5]">
+        <svg viewBox="0 0 100 80" className="w-full h-24 stroke-emerald-400 fill-none stroke-[2]">
           {/* Hand pointing */}
-          <line x1="15" y1="50" x2="30" y2="45" />
-          <line x1="30" y1="45" x2="45" y2="40" />
-          <circle cx="45" cy="40" r="3" className="fill-emerald-400" />
+          <line x1="15" y1="52" x2="30" y2="46" />
+          <line x1="30" y1="46" x2="45" y2="40" />
+          <circle cx="45" cy="40" r="3.5" className="fill-emerald-400" />
 
           {/* Ray beam with snap cone */}
-          <line x1="45" y1="40" x2="85" y2="28" className="stroke-emerald-300 stroke-[2]" />
-          <circle cx="85" cy="28" r="6" className="fill-emerald-400/20 stroke-emerald-400" />
-          <circle cx="85" cy="28" r="2" className="fill-emerald-300" />
+          <line x1="45" y1="40" x2="85" y2="28" className="stroke-emerald-300 stroke-[2.5]" />
+          <circle cx="85" cy="28" r="7" className="fill-emerald-400/30 stroke-emerald-400" />
+          <circle cx="85" cy="28" r="3" className="fill-emerald-300" />
 
           {/* Sound waves emitted from target */}
-          <path d="M 88 23 A 8 8 0 0 1 88 33" strokeDasharray="2 2" className="stroke-emerald-300" />
-          <text x="85" y="44" textAnchor="middle" className="text-[6.5px] font-mono fill-emerald-300 stroke-none">
+          <path d="M 88 21 A 9 9 0 0 1 88 35" strokeDasharray="2 2" className="stroke-emerald-300 stroke-[2]" />
+          <text x="85" y="46" textAnchor="middle" className="text-[7.5px] font-mono font-bold fill-emerald-300 stroke-none">
             +3dB VOCAL
           </text>
         </svg>
@@ -150,35 +150,35 @@ export default function ChronoSplatHome() {
         'Turn your non-dominant hand palm-up toward your face. A lightweight glassmorphic control dock instantly floats 70mm above your hand for effortless playback access.',
       accent: 'cyan',
       svgWireframe: (
-        <svg viewBox="0 0 100 80" className="w-full h-24 stroke-cyan-400 fill-none stroke-[1.5]">
+        <svg viewBox="0 0 100 80" className="w-full h-24 stroke-cyan-400 fill-none stroke-[2]">
           {/* Palm plane */}
-          <path d="M 25 58 Q 50 63 75 58" className="stroke-cyan-500/80 stroke-[2]" />
-          <line x1="50" y1="60" x2="50" y2="40" strokeDasharray="2 2" className="stroke-cyan-300" />
+          <path d="M 25 58 Q 50 64 75 58" className="stroke-cyan-400 stroke-[2.5]" />
+          <line x1="50" y1="60" x2="50" y2="38" strokeDasharray="3 3" className="stroke-cyan-300 stroke-[2]" />
 
           {/* Floating UI Dock */}
-          <rect x="30" y="24" width="40" height="18" rx="3" className="fill-cyan-950/70 stroke-cyan-400" />
-          <line x1="35" y1="30" x2="45" y2="30" className="stroke-cyan-300 stroke-[1.5]" />
-          <circle cx="58" cy="30" r="2.5" className="fill-cyan-400" />
-          <line x1="35" y1="36" x2="65" y2="36" strokeDasharray="1 1" className="stroke-cyan-500" />
+          <rect x="28" y="20" width="44" height="20" rx="4" className="fill-slate-900/90 stroke-cyan-400 stroke-[2]" />
+          <line x1="34" y1="27" x2="46" y2="27" className="stroke-cyan-300 stroke-[2]" />
+          <circle cx="62" cy="27" r="3" className="fill-cyan-400" />
+          <line x1="34" y1="33" x2="66" y2="33" strokeDasharray="2 2" className="stroke-cyan-400" />
         </svg>
       ),
     },
   ];
 
   return (
-    <div className="relative min-h-screen w-full bg-[#030712] text-white selection:bg-cyan-500 selection:text-black overflow-x-hidden font-sans">
+    <div className="relative min-h-screen w-full bg-[#030712] text-slate-100 selection:bg-cyan-500 selection:text-black overflow-x-hidden font-sans">
       {/* 1. Spatial OLED Mesh Gradient Aurora Background */}
-      <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+      <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden bg-[#030712]">
         {/* Deep cyan aurora */}
-        <div className="absolute -top-[20%] left-[10%] w-[650px] h-[650px] rounded-full bg-cyan-600/15 blur-[140px] animate-aurora-1" />
+        <div className="absolute -top-[15%] left-[8%] w-[680px] h-[680px] rounded-full bg-cyan-500/20 blur-[130px] animate-aurora-1" />
         {/* Hyper-violet aurora */}
-        <div className="absolute top-[25%] -right-[15%] w-[700px] h-[700px] rounded-full bg-purple-600/15 blur-[150px] animate-aurora-2" />
+        <div className="absolute top-[20%] -right-[10%] w-[720px] h-[720px] rounded-full bg-purple-600/20 blur-[140px] animate-aurora-2" />
         {/* Emerald ambient core */}
-        <div className="absolute -bottom-[20%] left-[30%] w-[600px] h-[600px] rounded-full bg-emerald-600/10 blur-[160px]" />
+        <div className="absolute -bottom-[15%] left-[28%] w-[650px] h-[650px] rounded-full bg-emerald-600/15 blur-[150px]" />
       </div>
 
       {/* 2. Embedded Three.js WebXR 3D Gaussian Splatting Canvas (Live Viewport) */}
-      <div className="fixed inset-0 z-0 opacity-80 pointer-events-auto">
+      <div className="fixed inset-0 z-0 opacity-85 pointer-events-auto">
         <VolumetricCinemaViewer
           onPlaybackChange={(playing, progress) => {
             setIsPlaying(playing);
@@ -191,42 +191,42 @@ export default function ChronoSplatHome() {
         />
       </div>
 
-      {/* 3. Vision Pro Glassmorphic UI Layer */}
+      {/* 3. Vision Pro High-Contrast Glassmorphic UI Layer */}
       <div className="relative z-10 flex flex-col justify-between min-h-screen px-6 py-8 md:px-14 md:py-10 pointer-events-none">
         {/* Top Navigation & Status Bar */}
         <header className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pointer-events-auto">
           {/* Logo Brand */}
           <div className="flex items-center gap-3">
-            <div className="relative flex items-center justify-center w-10 h-10 rounded-2xl bg-gradient-to-tr from-cyan-500 to-purple-600 p-[1px] shadow-lg shadow-cyan-500/20">
+            <div className="relative flex items-center justify-center w-11 h-11 rounded-2xl bg-gradient-to-tr from-cyan-400 to-purple-600 p-[1.5px] shadow-lg shadow-cyan-500/30">
               <div className="w-full h-full rounded-2xl bg-[#030712] flex items-center justify-center">
                 <Layers className="w-5 h-5 text-cyan-400" />
               </div>
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <span className="text-xl font-extrabold tracking-tight bg-gradient-to-r from-cyan-400 via-teal-300 to-indigo-400 bg-clip-text text-transparent">
+                <span className="text-2xl font-black tracking-tight bg-gradient-to-r from-cyan-300 via-teal-200 to-indigo-300 bg-clip-text text-transparent">
                   CHRONOSPLAT
                 </span>
-                <span className="px-1.5 py-0.5 rounded text-[10px] font-mono font-bold bg-cyan-500/20 text-cyan-300 border border-cyan-500/30">
+                <span className="px-2 py-0.5 rounded text-[11px] font-mono font-bold bg-cyan-400/20 text-cyan-200 border border-cyan-400/50 shadow-sm">
                   4D
                 </span>
               </div>
-              <p className="text-[11px] font-mono text-gray-400 uppercase tracking-wider">
-                WebXR Volumetric Cinema
+              <p className="text-xs font-mono text-slate-300 uppercase tracking-widest font-semibold">
+                WebXR Volumetric Spatial Cinema
               </p>
             </div>
           </div>
 
           {/* WebXR Active Status Pill */}
           <div className="flex items-center gap-3">
-            <div className="vision-glass flex items-center gap-2 px-4 py-2 rounded-full text-xs font-mono text-gray-300 border border-white/10">
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
+            <div className="vision-glass flex items-center gap-2.5 px-4 py-2 rounded-full text-xs font-mono text-slate-200 border border-slate-700">
+              <span className="relative flex h-2.5 w-2.5">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-90" />
+                <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-400" />
               </span>
-              <span className="text-white font-medium">Meta Quest 3 Native</span>
-              <span className="text-gray-500">•</span>
-              <span className="text-cyan-400">90 FPS Volumetric 6DoF</span>
+              <span className="text-white font-bold">Meta Quest 3 Native</span>
+              <span className="text-slate-500">•</span>
+              <span className="text-cyan-300 font-semibold">90 FPS Volumetric 6DoF</span>
             </div>
 
             {/* GitHub Source Link */}
@@ -234,33 +234,33 @@ export default function ChronoSplatHome() {
               href="https://github.com/fokrulanthro16-eng/ChronoSplat-4D"
               target="_blank"
               rel="noreferrer"
-              className="vision-glass flex items-center gap-2 px-3.5 py-2 rounded-full text-xs font-mono text-gray-300 hover:text-white hover:border-cyan-500/40 transition"
+              className="vision-glass flex items-center gap-2 px-4 py-2 rounded-full text-xs font-mono text-slate-200 hover:text-white hover:border-cyan-400/60 transition shadow-md"
             >
               <Zap className="w-3.5 h-3.5 text-cyan-400" />
-              <span>GitHub</span>
+              <span className="font-semibold">GitHub</span>
             </a>
           </div>
         </header>
 
         {/* Hero Pitch & WebXR Master Launch CTA */}
-        <section className="my-auto py-12 max-w-3xl pointer-events-auto">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.04] border border-white/[0.08] backdrop-blur-xl mb-6 shadow-sm">
-            <Sparkles className="w-4 h-4 text-cyan-400" />
-            <span className="text-xs font-mono text-cyan-300 tracking-wide uppercase font-semibold">
+        <section className="my-auto py-10 max-w-3xl pointer-events-auto">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-900/90 border border-cyan-400/40 backdrop-blur-xl mb-6 shadow-md shadow-cyan-950/40">
+            <Sparkles className="w-4 h-4 text-cyan-300" />
+            <span className="text-xs font-mono text-cyan-200 tracking-wider uppercase font-bold">
               Meta VR Start 2026 • Entertainment Track Finalist
             </span>
           </div>
 
-          <h1 className="text-4xl sm:text-6xl md:text-7xl font-black tracking-tight leading-[1.08] text-white">
+          <h1 className="text-4xl sm:text-6xl md:text-7xl font-black tracking-tight leading-[1.08] text-white drop-shadow-md">
             Volumetric Cinema.
             <br />
-            <span className="bg-gradient-to-r from-cyan-400 via-teal-300 to-purple-400 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-cyan-300 via-teal-200 to-purple-300 bg-clip-text text-transparent">
               Zero Controllers.
             </span>
           </h1>
 
-          <p className="mt-6 text-base sm:text-lg text-gray-300 max-w-xl leading-relaxed font-normal">
-            Step beyond flat 360° videos into true 6DoF Gaussian Splatting. 
+          <p className="mt-6 text-base sm:text-lg text-slate-200 max-w-xl leading-relaxed font-normal drop-shadow-sm">
+            Step beyond flat 360° panoramas into true 6DoF Gaussian Splatting. 
             Micro-scrub temporal keyframes with physical caliper pinches, zoom with bimanual gestures, and snap binaural audio with effortless fingertip rays.
           </p>
 
@@ -269,35 +269,35 @@ export default function ChronoSplatHome() {
             {/* Master WebXR Launch Button */}
             <button
               onClick={triggerWebXRLaunch}
-              className="relative group p-[1px] rounded-2xl transition duration-300 shadow-[0_0_35px_rgba(6,182,212,0.35)] hover:shadow-[0_0_55px_rgba(6,182,212,0.55)]"
+              className="relative group p-[1.5px] rounded-2xl transition duration-300 shadow-[0_0_40px_rgba(6,182,212,0.45)] hover:shadow-[0_0_60px_rgba(6,182,212,0.7)]"
             >
               <div className="absolute inset-0 rounded-2xl shimmer-border" />
               <div className="relative flex items-center gap-3 px-8 py-4 rounded-2xl bg-[#030712] hover:bg-slate-950 transition">
-                <span className="text-base font-bold text-white tracking-wide">
+                <span className="text-base font-extrabold text-white tracking-wide">
                   Enter Volumetric XR Cinema
                 </span>
-                <ChevronRight className="w-5 h-5 text-cyan-400 group-hover:translate-x-1 transition duration-200" />
+                <ChevronRight className="w-5 h-5 text-cyan-400 group-hover:translate-x-1.5 transition duration-200" />
               </div>
             </button>
 
             {/* Desktop 3D Inspection Mode Notice */}
-            <div className="flex items-center gap-2 px-4 py-3 rounded-xl vision-glass text-xs font-mono text-gray-400">
+            <div className="flex items-center gap-2 px-4 py-3.5 rounded-xl vision-glass text-xs font-mono text-slate-300 font-medium">
               <Eye className="w-4 h-4 text-purple-400" />
-              <span>Desktop 3D Orbit: Click & Drag Scene</span>
+              <span>Desktop 3D Orbit: Click &amp; Drag Scene</span>
             </div>
           </div>
         </section>
 
         {/* Hands-First Gesture Command Matrix (4-Column Glass Cards) */}
-        <section className="my-8 pointer-events-auto">
+        <section className="my-6 pointer-events-auto">
           <div className="flex items-center justify-between mb-4">
             <div className="flex items-center gap-2">
               <Hand className="w-4 h-4 text-cyan-400" />
-              <h2 className="text-sm font-mono uppercase tracking-wider text-gray-300 font-semibold">
+              <h2 className="text-sm font-mono uppercase tracking-wider text-slate-200 font-bold">
                 Hands-First Spatial Gesture Deck (Airplane Seat Tested)
               </h2>
             </div>
-            <span className="text-xs font-mono text-gray-500">2-Foot Stationary Operational Radius</span>
+            <span className="text-xs font-mono text-slate-400 font-medium">2-Foot Stationary Operational Radius</span>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -308,49 +308,49 @@ export default function ChronoSplatHome() {
                 className={`p-5 rounded-2xl transition-all duration-300 cursor-pointer ${
                   activeGestureTab === card.id
                     ? 'vision-glass-glow -translate-y-1'
-                    : 'vision-glass hover:border-white/20'
+                    : 'vision-glass hover:border-slate-500'
                 }`}
               >
                 <div className="flex items-center justify-between mb-2">
-                  <span className="text-[11px] font-mono px-2 py-0.5 rounded bg-white/[0.06] text-cyan-300 border border-white/[0.08]">
+                  <span className="text-[11px] font-mono font-bold px-2 py-0.5 rounded bg-slate-800 text-cyan-200 border border-slate-600">
                     {card.tag}
                   </span>
-                  <div className="w-2 h-2 rounded-full bg-cyan-400/80 animate-pulse" />
+                  <div className="w-2.5 h-2.5 rounded-full bg-cyan-400 animate-pulse shadow-sm shadow-cyan-400" />
                 </div>
 
                 <h3 className="text-base font-bold text-white mt-1">{card.title}</h3>
-                <p className="text-xs font-medium text-cyan-300/80 mb-3">{card.subtitle}</p>
+                <p className="text-xs font-semibold text-cyan-300 mb-3">{card.subtitle}</p>
 
                 {/* SVG Joint Wireframe Illustration */}
-                <div className="p-2 rounded-xl bg-black/40 border border-white/[0.04] mb-3">
+                <div className="p-2.5 rounded-xl bg-slate-950/80 border border-slate-800 mb-3">
                   {card.svgWireframe}
                 </div>
 
-                <p className="text-xs text-gray-400 leading-relaxed">{card.description}</p>
+                <p className="text-xs text-slate-300 leading-relaxed font-normal">{card.description}</p>
               </div>
             ))}
           </div>
         </section>
 
         {/* Live In-Cinema Spatial Audio & Frame Inspector HUD */}
-        <footer className="mt-auto pt-6 flex flex-col md:flex-row items-center justify-between gap-4 pointer-events-auto">
+        <footer className="mt-auto pt-4 flex flex-col md:flex-row items-center justify-between gap-4 pointer-events-auto">
           {/* Audio Visualizer & Focus Tag */}
           <div className="vision-glass flex items-center gap-4 px-5 py-3 rounded-2xl w-full md:w-auto">
             <div className="flex items-center gap-2">
               <Headphones className="w-4 h-4 text-emerald-400" />
-              <span className="text-xs font-mono text-gray-300 font-semibold">HRTF Audio Snapping</span>
+              <span className="text-xs font-mono text-slate-200 font-bold">HRTF Audio Snapping</span>
             </div>
 
             {/* Real-time Animated Audio Equalizer Bars */}
-            <div className="flex items-end gap-1 h-7 px-2">
-              <span className="w-1 bg-emerald-400 rounded-full animate-soundwave-1" />
-              <span className="w-1 bg-cyan-400 rounded-full animate-soundwave-2" />
-              <span className="w-1 bg-purple-400 rounded-full animate-soundwave-3" />
-              <span className="w-1 bg-emerald-400 rounded-full animate-soundwave-4" />
-              <span className="w-1 bg-cyan-400 rounded-full animate-soundwave-5" />
+            <div className="flex items-end gap-1.5 h-7 px-2">
+              <span className="w-1.5 bg-emerald-400 rounded-full animate-soundwave-1" />
+              <span className="w-1.5 bg-cyan-400 rounded-full animate-soundwave-2" />
+              <span className="w-1.5 bg-purple-400 rounded-full animate-soundwave-3" />
+              <span className="w-1.5 bg-emerald-400 rounded-full animate-soundwave-4" />
+              <span className="w-1.5 bg-cyan-400 rounded-full animate-soundwave-5" />
             </div>
 
-            <div className="text-xs font-mono text-emerald-300 px-2 py-1 rounded bg-emerald-950/60 border border-emerald-500/30">
+            <div className="text-xs font-mono font-bold text-emerald-200 px-2.5 py-1 rounded bg-emerald-950/80 border border-emerald-400/60 shadow-sm">
               {audioFocusActor ? 'TARGET: THE PROTAGONIST' : 'AMBIENT BED: 360°'}
             </div>
           </div>
@@ -360,18 +360,18 @@ export default function ChronoSplatHome() {
             {/* Ambilight Toggle Button */}
             <button
               onClick={() => setAmbilightActive(!ambilightActive)}
-              className="vision-glass flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-mono text-gray-300 hover:text-white hover:border-cyan-400/40 transition"
+              className="vision-glass flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-mono text-slate-200 hover:text-white hover:border-cyan-400/60 transition font-semibold"
             >
-              <Radio className={`w-3.5 h-3.5 ${ambilightActive ? 'text-cyan-400' : 'text-gray-500'}`} />
+              <Radio className={`w-3.5 h-3.5 ${ambilightActive ? 'text-cyan-400' : 'text-slate-500'}`} />
               <span>Virtual Ambilight: {ambilightActive ? 'ACTIVE' : 'OFF'}</span>
             </button>
 
             {/* Performance Badge */}
-            <div className="vision-glass flex items-center gap-2.5 px-4 py-2.5 rounded-xl text-xs font-mono text-gray-300">
+            <div className="vision-glass flex items-center gap-2.5 px-4 py-2.5 rounded-xl text-xs font-mono text-slate-200 font-semibold">
               <Activity className="w-3.5 h-3.5 text-purple-400" />
               <span>250,000 Splats/Frame</span>
-              <span className="text-gray-500">•</span>
-              <span className="text-emerald-400">&lt;18ms M2P</span>
+              <span className="text-slate-500">•</span>
+              <span className="text-emerald-300 font-bold">&lt;18ms M2P</span>
             </div>
           </div>
         </footer>
