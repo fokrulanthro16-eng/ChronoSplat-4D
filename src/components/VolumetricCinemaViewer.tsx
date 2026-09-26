@@ -41,8 +41,8 @@ export default function VolumetricCinemaViewer({
 
     // 1. WebGL & Scene Setup
     const scene = new THREE.Scene();
-    scene.background = new THREE.Color(0x030712);
-    scene.fog = new THREE.FogExp2(0x030712, 0.05);
+    scene.background = new THREE.Color(0x0a0a0f);
+    scene.fog = new THREE.FogExp2(0x0a0a0f, 0.05);
 
     const camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 0.05, 50);
     camera.position.set(0, 1.25, 0.4); // Seated viewing distance
@@ -50,8 +50,8 @@ export default function VolumetricCinemaViewer({
     const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, powerPreference: 'high-performance' });
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2.0));
     renderer.setSize(window.innerWidth, window.innerHeight);
-    renderer.setClearColor(0x030712, 1);
-    renderer.domElement.style.backgroundColor = '#030712';
+    renderer.setClearColor(0x0a0a0f, 1);
+    renderer.domElement.style.backgroundColor = '#0a0a0f';
     renderer.domElement.style.display = 'block';
     renderer.domElement.style.width = '100%';
     renderer.domElement.style.height = '100%';
@@ -299,8 +299,8 @@ export default function VolumetricCinemaViewer({
   }, [onPlaybackChange, onAudioSnap]);
 
   return (
-    <div className="relative w-full h-full overflow-hidden bg-[#030712]" style={{ backgroundColor: '#030712' }}>
-      <div ref={mountRef} className="w-full h-full cursor-grab active:cursor-grabbing bg-[#030712]" style={{ backgroundColor: '#030712' }} />
+    <div className="relative w-full h-full overflow-hidden bg-[#0a0a0f]" style={{ backgroundColor: '#0a0a0f' }}>
+      <div ref={mountRef} className="w-full h-full cursor-grab active:cursor-grabbing bg-[#0a0a0f]" style={{ backgroundColor: '#0a0a0f' }} />
     </div>
   );
 }
