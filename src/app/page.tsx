@@ -109,21 +109,39 @@ export default function SpatialCinemaTriptych() {
             </span>
           </div>
 
-          {/* Central 3D Canvas Portal Viewport */}
-          <div className="relative z-10 w-full h-56 sm:h-64 rounded-2xl bg-black/40 border border-sky-500/20 overflow-hidden shadow-inner my-2">
-            <VolumetricCinemaViewer
-              onPlaybackChange={(playing, progress) => {
-                setIsPlaying(playing);
-                setTimelineProgress(progress);
-              }}
-              onAudioSnap={(actorId) => {
-                setFocusedActor(actorId);
-              }}
-            />
-            {/* Desktop Orbit Badge */}
-            <div className="absolute bottom-2.5 left-2.5 pointer-events-none flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-black/70 backdrop-blur-md border border-white/10 text-[10px] font-mono text-sky-300">
-              <Eye className="w-3 h-3 text-sky-400" />
-              <span>Interactive 3D Orbit</span>
+          {/* Central Holographic Viewport */}
+          <div className="relative w-full h-[280px] bg-slate-950/90 rounded-2xl border border-cyan-500/30 overflow-hidden flex items-center justify-center shadow-inner my-2">
+            {/* Ambient radial glow */}
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(6,182,212,0.2),transparent_70%)] pointer-events-none" />
+            
+            {/* Active 3D Volumetric Canvas overlay */}
+            <div className="absolute inset-0 w-full h-full opacity-60">
+              <VolumetricCinemaViewer
+                onPlaybackChange={(playing, progress) => {
+                  setIsPlaying(playing);
+                  setTimelineProgress(progress);
+                }}
+                onAudioSnap={(actorId) => {
+                  setFocusedActor(actorId);
+                }}
+              />
+            </div>
+
+            {/* Center holographic particle/grid wireframe placeholder */}
+            <div className="relative z-10 flex flex-col items-center justify-center gap-2 pointer-events-none">
+              <div className="w-16 h-16 rounded-full border border-cyan-400/40 flex items-center justify-center bg-cyan-950/40 shadow-[0_0_20px_rgba(6,182,212,0.3)] animate-pulse">
+                <span className="text-cyan-300 text-xs font-mono font-bold">4D CORE</span>
+              </div>
+              <span className="text-[11px] font-mono text-cyan-200/70 tracking-wider font-semibold">
+                GAUSSIAN SPLAT STREAM READY
+              </span>
+            </div>
+
+            {/* Keep the Interactive 3D Orbit pill docked at the bottom-left */}
+            <div className="absolute bottom-3 left-3 z-20">
+              <button className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-900/80 border border-white/10 text-[10px] font-mono text-slate-300 hover:text-white backdrop-blur-md transition">
+                <span>◉</span> Interactive 3D Orbit
+              </button>
             </div>
           </div>
 
