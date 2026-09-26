@@ -6,30 +6,44 @@ import { VRButton } from 'three/examples/jsm/webxr/VRButton.js';
 import { ChronoSplat4DStreamer } from '../engine/splat-engine';
 import { HandGestureController } from '../gestures/HandGestureController';
 import { SpatialAudioEngine } from '../audio/spatial-audio';
-import { Play, Pause, RotateCcw, Volume2, Sparkles, Hand, Compass } from 'lucide-react';
 
-export default function VolumetricCinemaViewer() {
+interface VolumetricCinemaViewerProps {
+  onPlaybackChange?: (isPlaying: boolean, progress: number) => void;
+  onAudioSnap?: (actorId: string | null) => void;
+  isAmbilightActive?: boolean;
+}
+
+export default function VolumetricCinemaViewer({
+  onPlaybackChange,
+  onAudioSnap,
+  isAmbilightActive = true,
+}: VolumetricCinemaViewerProps) {
   const mountRef = useRef<HTMLDivElement>(null);
   const [inXRSession, setInXRSession] = useState(false);
-  const [isPlaying, setIsPlaying] = useState(true);
-  const [playbackProgress, setPlaybackProgress] = useState(0);
-  const [activeScale, setActiveScale] = useState(1.0);
-  const [focusedActor, setFocusedActor] = useState<string | null>(null);
+  const [isSupported, setIsSupported] = useState<boolean | null>(null);
 
   // References across render loop
   const streamerRef = useRef<ChronoSplat4DStreamer | null>(null);
   const audioEngineRef = useRef<SpatialAudioEngine | null>(null);
+  const gestureRigRef = useRef<HandGestureController | null>(null);
 
   useEffect(() => {
     if (!mountRef.current) return;
 
+    // Check WebXR support
+    if (typeof navigator !== 'undefined' && 'xr' in navigator && (navigator as any).xr) {
+      (navigator as any).xr.isSessionSupported('immersive-vr').then((supported: boolean) => {
+        setIsSupported(supported);
+      }).catch(() => setIsSupported(false));
+    } else {
+      setIsSupported(false);
+    }
+
     // 1. WebGL & Scene Setup
     const scene = new THREE.Scene();
-    scene.background = new THREE.Color(0x06070c);
 
-    // Seated camera baseline (approx 1.25m seated eye height)
     const camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 0.05, 50);
-    camera.position.set(0, 1.25, 0);
+    camera.position.set(0, 1.25, 0.4); // Seated viewing distance
 
     const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, powerPreference: 'high-performance' });
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2.0));
@@ -37,24 +51,11 @@ export default function VolumetricCinemaViewer() {
     renderer.xr.enabled = true;
     mountRef.current.appendChild(renderer.domElement);
 
-    // 2. WebXR VR Button
+    // 2. WebXR Native VR Button (Hidden container with ID for master CTA dispatch)
     const vrBtn = VRButton.createButton(renderer);
-    vrBtn.className = 'custom-webxr-btn';
-    vrBtn.style.position = 'absolute';
-    vrBtn.style.bottom = '32px';
-    vrBtn.style.left = '50%';
-    vrBtn.style.transform = 'translateX(-50%)';
-    vrBtn.style.padding = '14px 32px';
-    vrBtn.style.borderRadius = '9999px';
-    vrBtn.style.background = 'linear-gradient(135deg, #00f3ff 0%, #9d4edd 100%)';
-    vrBtn.style.color = '#ffffff';
-    vrBtn.style.fontWeight = 'bold';
-    vrBtn.style.fontSize = '15px';
-    vrBtn.style.boxShadow = '0 0 25px rgba(0, 243, 255, 0.4)';
-    vrBtn.style.border = 'none';
-    vrBtn.style.cursor = 'pointer';
-    vrBtn.style.zIndex = '50';
-    mountRef.current.appendChild(vrBtn);
+    vrBtn.id = 'meta-webxr-native-btn';
+    vrBtn.style.display = 'none'; // Controlled via master UI CTA
+    document.body.appendChild(vrBtn);
 
     // 3. Engine Subsystems
     const streamer = new ChronoSplat4DStreamer('/splats/scene_manifest.json', scene);
@@ -67,15 +68,16 @@ export default function VolumetricCinemaViewer() {
     audioEngineRef.current = audio;
 
     const gestures = new HandGestureController(scene);
+    gestureRigRef.current = gestures;
 
-    // 4. WebXR Hand Controller Attachment
-    const hand0 = renderer.xr.getHand(0); // Left / Non-Dominant
-    const hand1 = renderer.xr.getHand(1); // Right / Dominant
+    // 4. WebXR Hands
+    const hand0 = renderer.xr.getHand(0);
+    const hand1 = renderer.xr.getHand(1);
     scene.add(hand0);
     scene.add(hand1);
 
-    // 5. Palm-Up Lean-Back Floating Dock
-    const dockGeo = new THREE.PlaneGeometry(0.22, 0.09);
+    // 5. Palm-Up Lean-Back Floating Dock Mesh
+    const dockGeo = new THREE.PlaneGeometry(0.24, 0.10);
     const dockCanvas = document.createElement('canvas');
     dockCanvas.width = 512;
     dockCanvas.height = 210;
@@ -101,41 +103,34 @@ export default function VolumetricCinemaViewer() {
       transparent: true,
       opacity: 0.0,
     });
-    const caliperMesh = new THREE.Mesh(new THREE.PlaneGeometry(0.08, 0.04), caliperMat);
+    const caliperMesh = new THREE.Mesh(new THREE.PlaneGeometry(0.09, 0.045), caliperMat);
     scene.add(caliperMesh);
 
     const updateDockTexture = (playing: boolean, progress: number, scale: number) => {
       dockCtx.clearRect(0, 0, 512, 210);
-
-      // Glassmorphic translucent panel
-      dockCtx.fillStyle = 'rgba(12, 16, 26, 0.88)';
+      dockCtx.fillStyle = 'rgba(8, 12, 22, 0.88)';
       dockCtx.beginPath();
       dockCtx.roundRect(4, 4, 504, 202, 24);
       dockCtx.fill();
 
-      // Neon outline
-      dockCtx.strokeStyle = '#00f3ff';
+      dockCtx.strokeStyle = '#06b6d4';
       dockCtx.lineWidth = 4;
       dockCtx.stroke();
 
-      // Status text
       dockCtx.fillStyle = '#ffffff';
       dockCtx.font = 'bold 30px system-ui, sans-serif';
       dockCtx.fillText(playing ? 'VOLUMETRIC: PLAYING' : 'VOLUMETRIC: PAUSED', 32, 60);
 
-      // Scale readout
       dockCtx.font = '22px monospace';
-      dockCtx.fillStyle = '#9d4edd';
+      dockCtx.fillStyle = '#8b5cf6';
       dockCtx.fillText(`SCALE: ${(scale * 100).toFixed(0)}%`, 32, 105);
 
-      // Progress bar rail
-      dockCtx.fillStyle = '#222836';
+      dockCtx.fillStyle = '#1e293b';
       dockCtx.beginPath();
       dockCtx.roundRect(32, 135, 448, 20, 10);
       dockCtx.fill();
 
-      // Progress bar fill
-      dockCtx.fillStyle = '#00f3ff';
+      dockCtx.fillStyle = '#06b6d4';
       dockCtx.beginPath();
       dockCtx.roundRect(32, 135, Math.max(12, 448 * progress), 20, 10);
       dockCtx.fill();
@@ -145,12 +140,12 @@ export default function VolumetricCinemaViewer() {
 
     const updateCaliperHUD = (progress: number) => {
       caliperCtx.clearRect(0, 0, 256, 128);
-      caliperCtx.fillStyle = 'rgba(0, 243, 255, 0.15)';
+      caliperCtx.fillStyle = 'rgba(6, 182, 212, 0.2)';
       caliperCtx.beginPath();
       caliperCtx.roundRect(0, 0, 256, 128, 16);
       caliperCtx.fill();
 
-      caliperCtx.strokeStyle = '#00f3ff';
+      caliperCtx.strokeStyle = '#06b6d4';
       caliperCtx.lineWidth = 3;
       caliperCtx.stroke();
 
@@ -160,7 +155,39 @@ export default function VolumetricCinemaViewer() {
       caliperTexture.needsUpdate = true;
     };
 
-    // 7. Session Lifecycle Handlers
+    // 7. Desktop Fallback Mouse Orbit Rotation
+    let isMouseDown = false;
+    let prevMouseX = 0;
+    let prevMouseY = 0;
+
+    const onMouseDown = (e: MouseEvent) => {
+      if (inXRSession) return;
+      isMouseDown = true;
+      prevMouseX = e.clientX;
+      prevMouseY = e.clientY;
+    };
+
+    const onMouseMove = (e: MouseEvent) => {
+      if (!isMouseDown || inXRSession) return;
+      const deltaX = e.clientX - prevMouseX;
+      const deltaY = e.clientY - prevMouseY;
+      prevMouseX = e.clientX;
+      prevMouseY = e.clientY;
+
+      const group = streamer.getTransformNode();
+      group.rotation.y += deltaX * 0.008;
+      group.rotation.x += deltaY * 0.004;
+    };
+
+    const onMouseUp = () => {
+      isMouseDown = false;
+    };
+
+    window.addEventListener('mousedown', onMouseDown);
+    window.addEventListener('mousemove', onMouseMove);
+    window.addEventListener('mouseup', onMouseUp);
+
+    // 8. Session Handlers
     renderer.xr.addEventListener('sessionstart', () => {
       setInXRSession(true);
       audio.resume();
@@ -171,23 +198,21 @@ export default function VolumetricCinemaViewer() {
       setInXRSession(false);
     });
 
-    // 8. Animation & Render Loop
+    // 9. Animation Loop
     const clock = new THREE.Clock();
-    let currentNormProgress = 0;
+    let currentNorm = 0;
 
     renderer.setAnimationLoop(() => {
       const delta = clock.getDelta();
 
-      // Continuous HRTF HMD listener sync
       audio.updateListener(camera);
 
-      // Update positions of actors for spatial audio
       const activeActors = streamer.getActiveActors();
       for (const actor of activeActors) {
         audio.updateActorPosition(actor.id, actor.centroid);
       }
 
-      // Process 6DoF hand tracking joints
+      // Hands processing
       const gesturesState = gestures.processHands(
         hand0 as unknown as THREE.XRHandSpace,
         hand1 as unknown as THREE.XRHandSpace,
@@ -195,38 +220,37 @@ export default function VolumetricCinemaViewer() {
         activeActors
       );
 
-      // Caliper Scrubbing Handling
+      // Caliper Scrubbing
       if (gesturesState.isScrubbing) {
         streamer.setPlaying(false);
-        setIsPlaying(false);
-        currentNormProgress = THREE.MathUtils.clamp(
-          currentNormProgress + gesturesState.scrubDeltaNorm * 0.008,
+        currentNorm = THREE.MathUtils.clamp(
+          currentNorm + gesturesState.scrubDeltaNorm * 0.008,
           0,
           1
         );
-        streamer.seekNormalized(currentNormProgress);
-        setPlaybackProgress(currentNormProgress);
+        streamer.seekNormalized(currentNorm);
 
         if (gesturesState.caliperIndexPos) {
           caliperMesh.position.copy(gesturesState.caliperIndexPos).add(new THREE.Vector3(0, 0.05, 0));
           caliperMat.opacity = THREE.MathUtils.lerp(caliperMat.opacity, 1.0, 0.2);
-          updateCaliperHUD(currentNormProgress);
+          updateCaliperHUD(currentNorm);
         }
       } else {
         caliperMat.opacity = THREE.MathUtils.lerp(caliperMat.opacity, 0.0, 0.2);
       }
 
-      // Two-Hand Scale Zoom Handling
+      // Two-Hand Scale Zoom
       if (gesturesState.isScaling) {
         streamer.getTransformNode().scale.setScalar(gesturesState.scaleFactor);
-        setActiveScale(gesturesState.scaleFactor);
       }
 
-      // Contactless Binaural Audio Raycast Snapping
+      // Binaural Acoustic Snapping
       audio.applyAudioSnapFocus(gesturesState.snappedActor);
-      setFocusedActor(gesturesState.snappedActor);
+      if (onAudioSnap) {
+        onAudioSnap(gesturesState.snappedActor);
+      }
 
-      // Palm-Up Media Dock Projection
+      // Palm-Up Media Dock
       if (gesturesState.dockVisible) {
         dockMat.opacity = THREE.MathUtils.lerp(dockMat.opacity, 1.0, 0.15);
         dockMesh.matrix.copy(gesturesState.dockTransform);
@@ -236,11 +260,11 @@ export default function VolumetricCinemaViewer() {
         dockMat.opacity = THREE.MathUtils.lerp(dockMat.opacity, 0.0, 0.25);
       }
 
-      // Advance volumetric sequence
+      // Update streamer
       streamer.update(delta);
-      if (streamer.isPlaying()) {
-        currentNormProgress = streamer.getCurrentProgress();
-        setPlaybackProgress(currentNormProgress);
+      currentNorm = streamer.getCurrentProgress();
+      if (onPlaybackChange) {
+        onPlaybackChange(streamer.isPlaying(), currentNorm);
       }
 
       renderer.render(scene, camera);
@@ -255,111 +279,21 @@ export default function VolumetricCinemaViewer() {
 
     return () => {
       window.removeEventListener('resize', handleResize);
+      window.removeEventListener('mousedown', onMouseDown);
+      window.removeEventListener('mousemove', onMouseMove);
+      window.removeEventListener('mouseup', onMouseUp);
       gestures.dispose();
       renderer.dispose();
+      const existingBtn = document.getElementById('meta-webxr-native-btn');
+      if (existingBtn && existingBtn.parentNode) {
+        existingBtn.parentNode.removeChild(existingBtn);
+      }
     };
-  }, []);
-
-  const togglePlayback = () => {
-    if (!streamerRef.current) return;
-    const nextState = !streamerRef.current.isPlaying();
-    streamerRef.current.setPlaying(nextState);
-    setIsPlaying(nextState);
-  };
-
-  const resetTimeline = () => {
-    if (!streamerRef.current) return;
-    streamerRef.current.seekNormalized(0);
-    setPlaybackProgress(0);
-  };
+  }, [onPlaybackChange, onAudioSnap]);
 
   return (
-    <div className="relative w-screen h-screen bg-[#050508] overflow-hidden select-none">
-      {/* 3D WebXR Canvas Mount */}
-      <div ref={mountRef} className="w-full h-full" />
-
-      {/* Desktop / Spectator Fallback Overlay */}
-      {!inXRSession && (
-        <div className="absolute inset-0 pointer-events-none flex flex-col justify-between p-8 md:p-12">
-          {/* Header */}
-          <div className="flex items-start justify-between max-w-5xl">
-            <div className="space-y-2 pointer-events-auto">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-950/60 border border-cyan-500/30 text-cyan-400 text-xs font-mono tracking-wider">
-                <Sparkles className="w-3.5 h-3.5 text-cyan-400" />
-                META VR START 2026 • ENTERTAINMENT TRACK
-              </div>
-              <h1 className="text-4xl md:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-purple-300 to-pink-500 tracking-tight">
-                ChronoSplat 4D
-              </h1>
-              <p className="text-sm md:text-base text-gray-400 max-w-lg leading-relaxed">
-                Zero-install 6DoF volumetric spatial cinema running natively in Meta Quest Browser. 
-                Experience contactless 4D Gaussian Splatting with temporal caliper scrubbing.
-              </p>
-            </div>
-          </div>
-
-          {/* Feature Badges */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-3xl pointer-events-auto">
-            <div className="p-4 rounded-xl bg-slate-900/60 border border-slate-800 backdrop-blur-md">
-              <div className="flex items-center gap-2 text-cyan-400 mb-1">
-                <Hand className="w-4 h-4" />
-                <span className="text-xs font-bold uppercase tracking-wider">Temporal Caliper</span>
-              </div>
-              <p className="text-xs text-gray-400">
-                Pinch non-dominant thumb and index to micro-scrub temporal keyframes with sub-frame accuracy.
-              </p>
-            </div>
-
-            <div className="p-4 rounded-xl bg-slate-900/60 border border-slate-800 backdrop-blur-md">
-              <div className="flex items-center gap-2 text-purple-400 mb-1">
-                <Compass className="w-4 h-4" />
-                <span className="text-xs font-bold uppercase tracking-wider">Airplane Seat Tested</span>
-              </div>
-              <p className="text-xs text-gray-400">
-                100% seated-optimized within a 2-foot stationary radius. Zero controllers or roomscale walking required.
-              </p>
-            </div>
-
-            <div className="p-4 rounded-xl bg-slate-900/60 border border-slate-800 backdrop-blur-md">
-              <div className="flex items-center gap-2 text-emerald-400 mb-1">
-                <Volume2 className="w-4 h-4" />
-                <span className="text-xs font-bold uppercase tracking-wider">Acoustic Snap Ray</span>
-              </div>
-              <p className="text-xs text-gray-400">
-                Point at any volumetric performer to isolate HRTF vocal stems while attenuating ambient beds by -12dB.
-              </p>
-            </div>
-          </div>
-
-          {/* Desktop Preview Controls */}
-          <div className="flex items-center justify-between pointer-events-auto bg-slate-950/80 border border-slate-800/80 backdrop-blur-xl p-4 rounded-2xl max-w-2xl">
-            <div className="flex items-center gap-3">
-              <button
-                onClick={togglePlayback}
-                className="p-3 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-black font-semibold transition"
-              >
-                {isPlaying ? <Pause className="w-5 h-5" /> : <Play className="w-5 h-5" />}
-              </button>
-              <button
-                onClick={resetTimeline}
-                className="p-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-white transition"
-              >
-                <RotateCcw className="w-5 h-5" />
-              </button>
-              <div className="text-xs font-mono text-gray-300">
-                TIMECODE: {(playbackProgress * 100).toFixed(1)}% | SCALE: {(activeScale * 100).toFixed(0)}%
-              </div>
-            </div>
-
-            {focusedActor && (
-              <div className="text-xs font-mono text-emerald-400 flex items-center gap-2 animate-pulse">
-                <span className="w-2 h-2 rounded-full bg-emerald-400" />
-                AUDIO FOCUS: {focusedActor}
-              </div>
-            )}
-          </div>
-        </div>
-      )}
+    <div className="relative w-full h-full overflow-hidden">
+      <div ref={mountRef} className="w-full h-full cursor-grab active:cursor-grabbing" />
     </div>
   );
 }
