@@ -3,6 +3,8 @@
 [![Meta Quest 3 Native](https://img.shields.io/badge/Meta%20Quest%203-Native%20WebXR-0066FF?logo=meta&logoColor=white)](https://www.meta.com/quest/quest-3/)
 [![WebXR Device API](https://img.shields.io/badge/WebXR%20API-Hands--First%206DoF-00f3ff?logo=webxr&logoColor=black)](https://immersiveweb.dev/)
 [![Next.js 14](https://img.shields.io/badge/Next.js-14.2.3-black?logo=next.js&logoColor=white)](https://nextjs.org/)
+[![Live WebXR](https://img.shields.io/badge/Live%20WebXR-Vercel-black?logo=vercel&logoColor=white)](https://chrono-splat-4-d-seven.vercel.app)
+[![YouTube Demo](https://img.shields.io/badge/YouTube-Official%20Demo-FF0000?logo=youtube&logoColor=white)](https://youtu.be/CXhyhIhdaeg)
 [![Three.js](https://img.shields.io/badge/Three.js-WebGL2%20Splats-black?logo=three.js&logoColor=white)](https://threejs.org/)
 [![Docker Ready](https://img.shields.io/badge/Docker-Multi--Stage%20Ready-2496ED?logo=docker&logoColor=white)](https://www.docker.com/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
@@ -10,6 +12,14 @@
 
 > **Submission for the Meta VR Start Developer Competition 2026 — Entertainment Track**  
 > *Transforming passive video streaming into an active, tactile, 6DoF volumetric cinema experience.*
+
+---
+
+## 🌐 Live Deployments & Demo Links
+
+- 🚀 **Live WebXR Studio:** [https://chrono-splat-4-d-seven.vercel.app](https://chrono-splat-4-d-seven.vercel.app)
+- 🎬 **Official Video Pitch & Demo:** [https://youtu.be/CXhyhIhdaeg](https://youtu.be/CXhyhIhdaeg)
+- 📂 **Source Code Repository:** [https://github.com/fokrulanthro16-eng/ChronoSplat-4D](https://github.com/fokrulanthro16-eng/ChronoSplat-4D)
 
 ---
 
@@ -31,8 +41,15 @@ Viewers can step inside live-action cinematic narratives with true 6DoF head par
 
 ## 🎬 Official Demo Video & Neural Narration
 
+<p align="center">
+  <a href="https://youtu.be/CXhyhIhdaeg" target="_blank">
+    <img src="https://img.youtube.com/vi/CXhyhIhdaeg/maxresdefault.jpg" alt="ChronoSplat 4D YouTube Demo Walkthrough" width="100%" style="border-radius: 12px; box-shadow: 0 0 30px rgba(239,68,68,0.3);" />
+  </a>
+</p>
+
 The full-length 1080p demonstration video features synchronized neural voiceover (`en-US-ChristopherNeural`) walking through the 4D Gaussian Splatting Core, Zero-Controllers Air-Pinch Rig, and the Dual-LLM Spatial Director:
 
+- 📺 **Watch on YouTube**: [https://youtu.be/CXhyhIhdaeg](https://youtu.be/CXhyhIhdaeg)
 - 📽️ **Master Video Demonstration**: [`public/chronosplat_4d_demo.mp4`](public/chronosplat_4d_demo.mp4) (H.264 / AAC 1080p, 50.88s)
 - 🎙️ **Narrated Audio Track**: [`public/demo_voiceover.mp3`](public/demo_voiceover.mp3) (Studio-grade Edge TTS)
 
