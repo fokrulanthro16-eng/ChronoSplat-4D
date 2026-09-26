@@ -5,16 +5,12 @@ import dynamic from 'next/dynamic';
 import {
   Sparkles,
   Headphones,
-  Maximize2,
-  Sliders,
-  Volume2,
-  Activity,
   Layers,
   ChevronRight,
   Eye,
   Hand,
-  Clock,
   Radio,
+  Activity,
   Zap,
 } from 'lucide-react';
 
@@ -59,7 +55,6 @@ export default function ChronoSplatHome() {
       accent: 'cyan',
       svgWireframe: (
         <svg viewBox="0 0 100 80" className="w-full h-24 stroke-cyan-400 fill-none stroke-[2]">
-          {/* Thumb joint chain */}
           <circle cx="28" cy="55" r="3.5" className="fill-cyan-400" />
           <line x1="28" y1="55" x2="38" y2="40" />
           <circle cx="38" cy="40" r="3" className="fill-cyan-400" />
@@ -67,7 +62,6 @@ export default function ChronoSplatHome() {
           <circle cx="48" cy="34" r="3.5" className="fill-cyan-300 animate-ping opacity-75" />
           <circle cx="48" cy="34" r="3.5" className="fill-cyan-300" />
 
-          {/* Index joint chain snapping to thumb */}
           <circle cx="70" cy="65" r="3.5" className="fill-cyan-400" />
           <line x1="70" y1="65" x2="65" y2="48" />
           <circle cx="65" cy="48" r="3" className="fill-cyan-400" />
@@ -75,7 +69,6 @@ export default function ChronoSplatHome() {
           <line x1="56" y1="36" x2="51" y2="34" />
           <circle cx="51" cy="34" r="3.5" className="fill-cyan-300" />
 
-          {/* Caliper Measurement Rail */}
           <line x1="28" y1="20" x2="72" y2="20" strokeDasharray="3 3" className="stroke-cyan-300" />
           <circle cx="50" cy="20" r="3" className="fill-cyan-300" />
           <text x="50" y="14" textAnchor="middle" className="text-[8px] font-mono font-bold fill-cyan-300 stroke-none">
@@ -94,15 +87,12 @@ export default function ChronoSplatHome() {
       accent: 'purple',
       svgWireframe: (
         <svg viewBox="0 0 100 80" className="w-full h-24 stroke-purple-400 fill-none stroke-[2]">
-          {/* Left hand anchor */}
           <circle cx="20" cy="40" r="4.5" className="fill-purple-400" />
           <circle cx="20" cy="40" r="9" className="stroke-purple-400/60" />
 
-          {/* Right hand anchor */}
           <circle cx="80" cy="40" r="4.5" className="fill-purple-400" />
           <circle cx="80" cy="40" r="9" className="stroke-purple-400/60" />
 
-          {/* Dynamic Expansion Vector */}
           <line x1="26" y1="40" x2="74" y2="40" strokeDasharray="3 3" className="stroke-purple-300 stroke-[2]" />
           <polygon points="26,36 19,40 26,44" className="fill-purple-300 stroke-none" />
           <polygon points="74,36 81,40 74,44" className="fill-purple-300 stroke-none" />
@@ -123,17 +113,14 @@ export default function ChronoSplatHome() {
       accent: 'emerald',
       svgWireframe: (
         <svg viewBox="0 0 100 80" className="w-full h-24 stroke-emerald-400 fill-none stroke-[2]">
-          {/* Hand pointing */}
           <line x1="15" y1="52" x2="30" y2="46" />
           <line x1="30" y1="46" x2="45" y2="40" />
           <circle cx="45" cy="40" r="3.5" className="fill-emerald-400" />
 
-          {/* Ray beam with snap cone */}
           <line x1="45" y1="40" x2="85" y2="28" className="stroke-emerald-300 stroke-[2.5]" />
           <circle cx="85" cy="28" r="7" className="fill-emerald-400/30 stroke-emerald-400" />
           <circle cx="85" cy="28" r="3" className="fill-emerald-300" />
 
-          {/* Sound waves emitted from target */}
           <path d="M 88 21 A 9 9 0 0 1 88 35" strokeDasharray="2 2" className="stroke-emerald-300 stroke-[2]" />
           <text x="85" y="46" textAnchor="middle" className="text-[7.5px] font-mono font-bold fill-emerald-300 stroke-none">
             +3dB VOCAL
@@ -151,11 +138,9 @@ export default function ChronoSplatHome() {
       accent: 'cyan',
       svgWireframe: (
         <svg viewBox="0 0 100 80" className="w-full h-24 stroke-cyan-400 fill-none stroke-[2]">
-          {/* Palm plane */}
           <path d="M 25 58 Q 50 64 75 58" className="stroke-cyan-400 stroke-[2.5]" />
           <line x1="50" y1="60" x2="50" y2="38" strokeDasharray="3 3" className="stroke-cyan-300 stroke-[2]" />
 
-          {/* Floating UI Dock */}
           <rect x="28" y="20" width="44" height="20" rx="4" className="fill-slate-900/90 stroke-cyan-400 stroke-[2]" />
           <line x1="34" y1="27" x2="46" y2="27" className="stroke-cyan-300 stroke-[2]" />
           <circle cx="62" cy="27" r="3" className="fill-cyan-400" />
@@ -166,19 +151,13 @@ export default function ChronoSplatHome() {
   ];
 
   return (
-    <div className="relative min-h-screen w-full bg-[#030712] text-slate-100 selection:bg-cyan-500 selection:text-black overflow-x-hidden font-sans">
-      {/* 1. Spatial OLED Mesh Gradient Aurora Background */}
-      <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden bg-[#030712]">
-        {/* Deep cyan aurora */}
-        <div className="absolute -top-[15%] left-[8%] w-[680px] h-[680px] rounded-full bg-cyan-500/20 blur-[130px] animate-aurora-1" />
-        {/* Hyper-violet aurora */}
-        <div className="absolute top-[20%] -right-[10%] w-[720px] h-[720px] rounded-full bg-purple-600/20 blur-[140px] animate-aurora-2" />
-        {/* Emerald ambient core */}
-        <div className="absolute -bottom-[15%] left-[28%] w-[650px] h-[650px] rounded-full bg-emerald-600/15 blur-[150px]" />
-      </div>
+    <div className="relative min-h-screen w-full bg-[#030712] text-slate-100 overflow-hidden font-sans">
+      {/* 1. Subtle, Deep Dark Spatial Radial Glow (Zero Foggy Wash) */}
+      <div className="fixed inset-0 pointer-events-none z-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.15),rgba(3,7,18,0))]" />
+      <div className="fixed inset-0 pointer-events-none z-0 bg-[radial-gradient(circle_at_20%_80%,rgba(6,182,212,0.08),transparent_50%)]" />
 
-      {/* 2. Embedded Three.js WebXR 3D Gaussian Splatting Canvas (Live Viewport) */}
-      <div className="fixed inset-0 z-0 opacity-85 pointer-events-auto">
+      {/* 2. Embedded Three.js WebXR 3D Gaussian Splatting Canvas (Pitch-Black Base) */}
+      <div className="fixed inset-0 z-0 pointer-events-auto">
         <VolumetricCinemaViewer
           onPlaybackChange={(playing, progress) => {
             setIsPlaying(playing);
