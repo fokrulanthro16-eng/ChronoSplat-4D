@@ -1,6 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: false, // Prevents dual-canvas mount in WebXR dev loops
+  output: 'standalone',
   webpack: (config) => {
     config.module.rules.push({
       test: /\.(splat|ply|wasm)$/,
