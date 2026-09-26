@@ -97,3 +97,9 @@ html, body {
   background-size: 200% 100%;
   animation: shimmer 3.5s linear infinite;
 }
+
+/* Hide default Three.js VRButton overlay completely */
+#VRButton, button[id*="VR"] {
+  display: none !important;
+}
+
