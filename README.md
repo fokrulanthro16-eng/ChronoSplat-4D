@@ -13,6 +13,14 @@
 
 ---
 
+## 🌌 Visual Overview & Spatial Architecture
+
+<p align="center">
+  <img src="./docs/screenshots/hero_preview.png" alt="ChronoSplat 4D Spatial Cinema Studio" width="100%" style="border-radius: 12px; box-shadow: 0 0 30px rgba(6,182,212,0.3);" />
+</p>
+
+---
+
 ## 🌟 Executive Summary
 
 **ChronoSplat 4D** is the world's first open-source, hands-first volumetric cinema engine built specifically for WebXR on Meta Quest 3. By fusing **4D Gaussian Splatting (4DGS)** with low-latency WebGL2 instancing, native **Web Audio HRTF spatialization**, and a zero-controller **airplane-seat gesture rig**, ChronoSplat 4D eliminates both the physical controller barrier and the nauseating flat-plane restrictions of legacy 360° video.
