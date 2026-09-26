@@ -18,6 +18,10 @@ html, body {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
 }
 
+img {
+  background: transparent !important;
+}
+
 /* Glassmorphism & Neon Glows */
 .spatial-card-blue {
   background: radial-gradient(120% 120% at 50% 10%, rgba(14, 165, 233, 0.25) 0%, rgba(2, 6, 23, 0.85) 100%);

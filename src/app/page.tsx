@@ -35,11 +35,6 @@ const VolumetricCinemaViewer = dynamic(
   { ssr: false }
 );
 
-const VolumetricCoreCanvas = dynamic(
-  () => import('@/components/VolumetricCoreCanvas'),
-  { ssr: false }
-);
-
 export default function SpatialCinemaTriptych() {
   // Playback & Session state
   const [isPlaying, setIsPlaying] = useState(true);
@@ -232,23 +227,40 @@ export default function SpatialCinemaTriptych() {
             </span>
           </div>
 
-          {/* Interactive Three.js 25,000 Particle Cloud Canvas */}
-          <div className="relative w-full h-[260px] bg-[#020617] rounded-2xl border border-cyan-500/20 overflow-hidden flex flex-col items-center justify-center shadow-inner my-2">
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(6,182,212,0.12),rgba(217,70,239,0.06),transparent_75%)] pointer-events-none" />
+          {/* Pure Dark 3D Three.js / Holographic Canvas Container */}
+          <div className="relative w-full h-[280px] bg-[#020617] rounded-2xl border border-cyan-500/30 overflow-hidden flex items-center justify-center shadow-inner">
+            {/* Dark ambient cyan background glow */}
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(6,182,212,0.12),transparent_70%)] pointer-events-none" />
 
-            <div className="relative z-10 w-full h-full">
-              <VolumetricCoreCanvas />
-            </div>
-
-            <div className="absolute bottom-3 left-3 z-20 pointer-events-none">
-              <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-900/90 border border-cyan-500/30 text-[10px] font-mono text-cyan-200 backdrop-blur-md">
-                <span className="text-cyan-400">◉</span> Click &amp; Drag 6DoF Orbit
+            {/* Three.js Canvas or Hologram Core */}
+            <div className="relative z-10 flex flex-col items-center justify-center gap-3 select-none pointer-events-none">
+              <div className="relative flex items-center justify-center">
+                <div
+                  className="w-16 h-16 rounded-full border border-dashed border-cyan-400/40 animate-spin"
+                  style={{ animationDuration: '10s' }}
+                />
+                <div className="absolute w-12 h-12 rounded-full bg-cyan-950/60 border border-cyan-400 flex items-center justify-center shadow-[0_0_25px_rgba(6,182,212,0.5)]">
+                  <span className="text-[11px] font-mono font-bold text-cyan-300">4D</span>
+                </div>
+              </div>
+              <div className="text-center">
+                <div className="text-xs font-mono font-bold text-cyan-300 tracking-wider">
+                  GAUSSIAN SPLAT STREAM
+                </div>
+                <div className="text-[10px] font-mono text-slate-400 mt-0.5">
+                  READY • 6DoF NATIVE
+                </div>
               </div>
             </div>
-            <div className="absolute top-3 right-3 z-20 pointer-events-none">
-              <span className="text-[9px] font-mono px-2 py-0.5 rounded bg-slate-950/80 border border-cyan-500/30 text-cyan-300">
-                25k Volumetric Splats
-              </span>
+
+            {/* Badges & Orbit Trigger */}
+            <div className="absolute top-3 right-3 z-20 px-2.5 py-1 rounded-full bg-slate-900/80 border border-white/10 text-[10px] font-mono text-cyan-300">
+              25k Volumetric Splats
+            </div>
+            <div className="absolute bottom-3 left-3 z-20">
+              <button className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-900/90 border border-cyan-500/40 text-[10px] font-mono text-cyan-200 hover:text-white backdrop-blur-md transition shadow-md">
+                <span className="text-cyan-400">◉</span> Click &amp; Drag 6DoF Orbit
+              </button>
             </div>
           </div>
 
