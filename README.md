@@ -29,23 +29,27 @@ Viewers can step inside live-action cinematic narratives with true 6DoF head par
 
 ---
 
-## 🎬 Demo & Visual Showcase
+## 🎬 Official Demo Video & Neural Narration
 
-```
-+----------------------------------------------------------------------------------------------------+
-|                                    [ VIDEO DEMO PLACEHOLDER ]                                      |
-|                 Watch the full 90 FPS Meta Quest 3 Hand-Tracking Walkthrough Video                 |
-|                               (https://chronosplat.io / YouTube / Vimeo)                           |
-+----------------------------------------------------------------------------------------------------+
-```
+The full-length 1080p demonstration video features synchronized neural voiceover (`en-US-ChristopherNeural`) walking through the 4D Gaussian Splatting Core, Zero-Controllers Air-Pinch Rig, and the Dual-LLM Spatial Director:
 
-### UI & Spatial Benchmarks
+- 📽️ **Master Video Demonstration**: [`public/chronosplat_4d_demo.mp4`](public/chronosplat_4d_demo.mp4) (H.264 / AAC 1080p, 50.88s)
+- 🎙️ **Narrated Audio Track**: [`public/demo_voiceover.mp3`](public/demo_voiceover.mp3) (Studio-grade Edge TTS)
 
-Explore high-resolution UI captures and WebXR session telemetry in [`docs/screenshots/`](docs/screenshots/):
+### 📸 High-Resolution UI & Telemetry Gallery
 
-| 3-Panel Spatial Studio | Seated Hand-Rig HUD | Ingestion Engine Modal |
-|:---:|:---:|:---:|
-| `docs/screenshots/triptych_studio.png` | `docs/screenshots/seated_gestures.png` | `docs/screenshots/ingestion_modal.png` |
+Explore the captured 1080p spatial studio views in [`docs/screenshots/`](docs/screenshots/):
+
+| 01. Spatial Studio Overview | 02. Volumetric Core |
+|:---:|:---:|
+| <img src="docs/screenshots/01_hero_overview.png" width="450" alt="Full 3-Panel Viewport" /> | <img src="docs/screenshots/02_volumetric_core.png" width="450" alt="4D Gaussian Splatting Core" /> |
+| **03. Air-Pinch Hand Rig** | **04. Dual-LLM Spatial Copilot** |
+| <img src="docs/screenshots/03_hand_rig.png" width="450" alt="Zero-Controller Hand Tracking" /> | <img src="docs/screenshots/04_dual_llm_copilot.png" width="450" alt="Gemini-Nemotron Spatial Director" /> |
+
+<p align="center">
+  <b>05. Seated Gesture Deck & Legacy VR Comparison Matrix</b><br/>
+  <img src="docs/screenshots/05_benchmark_deck.png" width="900" alt="Benchmark Deck & Seated Gestures" />
+</p>
 
 ---
 

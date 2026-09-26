@@ -50,7 +50,10 @@ export default function VolumetricCinemaViewer({
     // 2. WebXR Native VR Button (Hidden container with ID for master CTA dispatch)
     const vrBtn = VRButton.createButton(renderer);
     vrBtn.id = 'meta-webxr-native-btn';
-    vrBtn.style.display = 'none'; // Controlled via master UI CTA
+    vrBtn.style.setProperty('display', 'none', 'important');
+    vrBtn.style.setProperty('visibility', 'hidden', 'important');
+    vrBtn.style.setProperty('opacity', '0', 'important');
+    vrBtn.style.setProperty('pointer-events', 'none', 'important');
     document.body.appendChild(vrBtn);
 
     // 3. Engine Subsystems
