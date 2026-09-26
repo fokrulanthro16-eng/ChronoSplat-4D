@@ -487,6 +487,12 @@ export default function SpatialCinemaTriptych() {
             </div>
             <span className="text-[11px] font-bold text-emerald-400">ACTIVE</span>
           </div>
+
+          {/* AI Copilot Core Live Badge */}
+          <div className="mt-3 px-3 py-1.5 rounded-xl bg-slate-950/70 border border-emerald-500/30 flex items-center justify-between text-[11px] font-mono">
+            <span className="text-slate-400">AI Copilot Core</span>
+            <span className="text-emerald-400 flex items-center gap-1.5">● Gemini 1.5 ↔ Nemotron Failover</span>
+          </div>
         </div>
       </div>
 
