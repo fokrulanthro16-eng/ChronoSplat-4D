@@ -42,6 +42,7 @@ export default function VolumetricCinemaViewer({
     // 1. WebGL & Scene Setup
     const scene = new THREE.Scene();
     scene.background = new THREE.Color(0x030712);
+    scene.fog = new THREE.FogExp2(0x030712, 0.05);
 
     const camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 0.05, 50);
     camera.position.set(0, 1.25, 0.4); // Seated viewing distance
@@ -50,6 +51,10 @@ export default function VolumetricCinemaViewer({
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2.0));
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.setClearColor(0x030712, 1);
+    renderer.domElement.style.backgroundColor = '#030712';
+    renderer.domElement.style.display = 'block';
+    renderer.domElement.style.width = '100%';
+    renderer.domElement.style.height = '100%';
     renderer.xr.enabled = true;
     mountRef.current.appendChild(renderer.domElement);
 
