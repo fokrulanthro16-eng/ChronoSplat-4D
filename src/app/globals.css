@@ -2,32 +2,33 @@
 @tailwind components;
 @tailwind utilities;
 
-*, *::before, *::after {
-  box-sizing: border-box;
+:root {
+  --background: 3 7 18;
+  --foreground: 248 250 252;
 }
 
-:root, html, body {
+html, body {
   background-color: #030712 !important;
-  background: #030712 !important;
   color: #f8fafc !important;
-  color-scheme: dark !important;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
 }
 
-/* Custom Vision Pro high-contrast glassmorphic utilities */
 .vision-glass {
-  background: rgba(15, 23, 42, 0.92) !important;
-  backdrop-filter: blur(28px);
-  -webkit-backdrop-filter: blur(28px);
-  border: 1px solid rgba(255, 255, 255, 0.12) !important;
-  box-shadow: 0 10px 35px -5px rgba(0, 0, 0, 0.85);
+  background: rgba(15, 23, 42, 0.65);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .vision-glass-glow {
-  background: rgba(15, 23, 42, 0.98) !important;
-  backdrop-filter: blur(32px);
-  -webkit-backdrop-filter: blur(32px);
-  border: 1px solid rgba(6, 182, 212, 0.6) !important;
-  box-shadow: 0 0 35px -2px rgba(6, 182, 212, 0.3), 0 12px 40px -5px rgba(0, 0, 0, 0.9);
+  background: rgba(15, 23, 42, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(6, 182, 212, 0.5);
+  box-shadow: 0 0 25px -3px rgba(6, 182, 212, 0.25);
 }
 
 /* Audio EQ Bar Animations */
@@ -36,7 +37,7 @@
     height: 6px;
   }
   50% {
-    height: 28px;
+    height: 26px;
   }
 }
 

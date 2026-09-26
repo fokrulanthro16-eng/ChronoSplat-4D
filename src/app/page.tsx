@@ -172,75 +172,74 @@ export default function ChronoSplatHome() {
         />
       </div>
 
-      {/* 2. Vision Pro High-Contrast Glassmorphic UI Layer */}
-      <div className="relative z-10 flex flex-col justify-between min-h-screen px-6 py-8 md:px-14 md:py-10 pointer-events-none">
-        {/* Top Navigation & Status Bar */}
-        <header className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pointer-events-auto">
-          {/* Logo Brand */}
-          <div className="flex items-center gap-3">
-            <div className="relative flex items-center justify-center w-11 h-11 rounded-2xl bg-gradient-to-tr from-cyan-400 to-purple-600 p-[1.5px] shadow-lg shadow-cyan-500/30">
-              <div className="w-full h-full rounded-2xl bg-[#030712] flex items-center justify-center">
-                <Layers className="w-5 h-5 text-cyan-400" />
-              </div>
-            </div>
-            <div>
-              <div className="flex items-center gap-2">
-                <span className="text-2xl font-black tracking-tight bg-gradient-to-r from-cyan-300 via-teal-200 to-indigo-300 bg-clip-text text-transparent">
-                  CHRONOSPLAT
-                </span>
-                <span className="px-2 py-0.5 rounded text-[11px] font-mono font-bold bg-cyan-400/20 text-cyan-200 border border-cyan-400/50 shadow-sm">
-                  4D
-                </span>
-              </div>
-              <p className="text-xs font-mono text-slate-300 uppercase tracking-widest font-semibold">
-                WebXR Volumetric Spatial Cinema
-              </p>
+      {/* 2. Top Navigation Bar: Pure Dark Styling */}
+      <header className="relative z-20 w-full px-6 py-4 md:px-14 bg-[#030712]/80 backdrop-blur-md border-b border-white/10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pointer-events-auto">
+        {/* Brand Logo */}
+        <div className="flex items-center gap-3">
+          <div className="relative flex items-center justify-center w-10 h-10 rounded-xl bg-gradient-to-tr from-cyan-400 to-purple-600 p-[1.5px] shadow-lg shadow-cyan-500/20">
+            <div className="w-full h-full rounded-xl bg-[#030712] flex items-center justify-center">
+              <Layers className="w-5 h-5 text-cyan-400" />
             </div>
           </div>
-
-          {/* WebXR Active Status Pill */}
-          <div className="flex items-center gap-3">
-            <div className="vision-glass flex items-center gap-2.5 px-4 py-2 rounded-full text-xs font-mono text-slate-200 border border-slate-700">
-              <span className="relative flex h-2.5 w-2.5">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-90" />
-                <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-400" />
+          <div>
+            <div className="flex items-center gap-2">
+              <span className="text-xl font-black tracking-tight bg-gradient-to-r from-cyan-300 via-teal-200 to-indigo-300 bg-clip-text text-transparent">
+                CHRONOSPLAT
               </span>
-              <span className="text-slate-100 font-bold">Meta Quest 3 Native</span>
-              <span className="text-slate-500">•</span>
-              <span className="text-cyan-300 font-semibold">90 FPS Volumetric 6DoF</span>
+              <span className="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-cyan-500/20 text-cyan-300 border border-cyan-500/40">
+                4D
+              </span>
             </div>
-
-            {/* GitHub Source Link */}
-            <a
-              href="https://github.com/fokrulanthro16-eng/ChronoSplat-4D"
-              target="_blank"
-              rel="noreferrer"
-              className="vision-glass flex items-center gap-2 px-4 py-2 rounded-full text-xs font-mono text-slate-200 hover:text-white hover:border-cyan-400/60 transition shadow-md"
-            >
-              <Zap className="w-3.5 h-3.5 text-cyan-400" />
-              <span className="font-semibold">GitHub</span>
-            </a>
+            <p className="text-[11px] font-mono text-slate-400 uppercase tracking-wider font-medium">
+              WebXR Volumetric Spatial Cinema
+            </p>
           </div>
-        </header>
+        </div>
 
-        {/* Hero Pitch & WebXR Master Launch CTA */}
-        <section className="my-auto py-10 max-w-3xl pointer-events-auto">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-900/90 border border-cyan-400/40 backdrop-blur-xl mb-6 shadow-md shadow-cyan-950/40">
+        {/* Status Pill & GitHub Link */}
+        <div className="flex items-center gap-3">
+          <div className="vision-glass flex items-center gap-2.5 px-3.5 py-1.5 rounded-full text-xs font-mono text-slate-200">
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-90" />
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400" />
+            </span>
+            <span className="text-white font-semibold">Meta Quest 3 Native</span>
+            <span className="text-slate-600">•</span>
+            <span className="text-cyan-300 font-medium">90 FPS 6DoF</span>
+          </div>
+
+          <a
+            href="https://github.com/fokrulanthro16-eng/ChronoSplat-4D"
+            target="_blank"
+            rel="noreferrer"
+            className="vision-glass flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-mono text-slate-200 hover:text-white hover:border-cyan-400/50 transition"
+          >
+            <Zap className="w-3.5 h-3.5 text-cyan-400" />
+            <span>GitHub</span>
+          </a>
+        </div>
+      </header>
+
+      {/* 3. Main Content Layer */}
+      <div className="relative z-10 flex flex-col justify-between min-h-[calc(100vh-80px)] px-6 py-8 md:px-14 md:py-10 pointer-events-none">
+        {/* Hero Section */}
+        <section className="my-auto py-8 max-w-3xl pointer-events-auto">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900/90 border border-cyan-400/30 backdrop-blur-xl mb-6 shadow-sm">
             <Sparkles className="w-4 h-4 text-cyan-300" />
-            <span className="text-xs font-mono text-cyan-200 tracking-wider uppercase font-bold">
+            <span className="text-xs font-mono text-cyan-200 tracking-wider uppercase font-semibold">
               Meta VR Start 2026 • Entertainment Track Finalist
             </span>
           </div>
 
-          <h1 className="text-4xl sm:text-6xl md:text-7xl font-black tracking-tight leading-[1.08] text-slate-100 drop-shadow-md">
+          <h1 className="text-4xl sm:text-6xl md:text-7xl font-black tracking-tight leading-[1.08] text-white">
             Volumetric Cinema.
             <br />
-            <span className="bg-gradient-to-r from-cyan-300 via-teal-200 to-purple-300 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-cyan-400 via-teal-300 to-indigo-400 bg-clip-text text-transparent">
               Zero Controllers.
             </span>
           </h1>
 
-          <p className="mt-6 text-base sm:text-lg text-slate-200 max-w-xl leading-relaxed font-normal drop-shadow-sm">
+          <p className="mt-6 text-base sm:text-lg text-slate-300 max-w-xl leading-relaxed font-normal">
             Step beyond flat 360° panoramas into true 6DoF Gaussian Splatting. 
             Micro-scrub temporal keyframes with physical caliper pinches, zoom with bimanual gestures, and snap binaural audio with effortless fingertip rays.
           </p>
@@ -250,11 +249,11 @@ export default function ChronoSplatHome() {
             {/* Master WebXR Launch Button */}
             <button
               onClick={triggerWebXRLaunch}
-              className="relative group p-[1.5px] rounded-2xl transition duration-300 shadow-[0_0_40px_rgba(6,182,212,0.45)] hover:shadow-[0_0_60px_rgba(6,182,212,0.7)]"
+              className="relative group p-[1.5px] rounded-2xl transition duration-300 shadow-[0_0_35px_rgba(6,182,212,0.35)] hover:shadow-[0_0_55px_rgba(6,182,212,0.6)]"
             >
               <div className="absolute inset-0 rounded-2xl shimmer-border" />
               <div className="relative flex items-center gap-3 px-8 py-4 rounded-2xl bg-[#030712] hover:bg-slate-950 transition">
-                <span className="text-base font-extrabold text-slate-100 tracking-wide">
+                <span className="text-base font-extrabold text-white tracking-wide">
                   Enter Volumetric XR Cinema
                 </span>
                 <ChevronRight className="w-5 h-5 text-cyan-400 group-hover:translate-x-1.5 transition duration-200" />
@@ -289,17 +288,17 @@ export default function ChronoSplatHome() {
                 className={`p-5 rounded-2xl transition-all duration-300 cursor-pointer ${
                   activeGestureTab === card.id
                     ? 'vision-glass-glow -translate-y-1'
-                    : 'vision-glass hover:border-slate-500'
+                    : 'vision-glass hover:border-slate-600'
                 }`}
               >
                 <div className="flex items-center justify-between mb-2">
-                  <span className="text-[11px] font-mono font-bold px-2 py-0.5 rounded bg-slate-800 text-cyan-200 border border-slate-600">
+                  <span className="text-[11px] font-mono font-bold px-2 py-0.5 rounded bg-slate-800 text-cyan-200 border border-slate-700">
                     {card.tag}
                   </span>
                   <div className="w-2.5 h-2.5 rounded-full bg-cyan-400 animate-pulse shadow-sm shadow-cyan-400" />
                 </div>
 
-                <h3 className="text-base font-bold text-slate-100 mt-1">{card.title}</h3>
+                <h3 className="text-base font-bold text-white mt-1">{card.title}</h3>
                 <p className="text-xs font-semibold text-cyan-300 mb-3">{card.subtitle}</p>
 
                 {/* SVG Joint Wireframe Illustration */}
@@ -331,7 +330,7 @@ export default function ChronoSplatHome() {
               <span className="w-1.5 bg-cyan-400 rounded-full animate-soundwave-5" />
             </div>
 
-            <div className="text-xs font-mono font-bold text-emerald-200 px-2.5 py-1 rounded bg-emerald-950/80 border border-emerald-400/60 shadow-sm">
+            <div className="text-xs font-mono font-bold text-emerald-200 px-2.5 py-1 rounded bg-emerald-950/80 border border-emerald-500/40 shadow-sm">
               {audioFocusActor ? 'TARGET: THE PROTAGONIST' : 'AMBIENT BED: 360°'}
             </div>
           </div>
@@ -341,7 +340,7 @@ export default function ChronoSplatHome() {
             {/* Ambilight Toggle Button */}
             <button
               onClick={() => setAmbilightActive(!ambilightActive)}
-              className="vision-glass flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-mono text-slate-200 hover:text-white hover:border-cyan-400/60 transition font-semibold"
+              className="vision-glass flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-mono text-slate-200 hover:text-white hover:border-cyan-400/50 transition font-semibold"
             >
               <Radio className={`w-3.5 h-3.5 ${ambilightActive ? 'text-cyan-400' : 'text-slate-500'}`} />
               <span>Virtual Ambilight: {ambilightActive ? 'ACTIVE' : 'OFF'}</span>
