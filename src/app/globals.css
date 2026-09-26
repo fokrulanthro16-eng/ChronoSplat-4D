@@ -2,26 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
-* {
+*, *::before, *::after {
   box-sizing: border-box;
-  margin: 0;
-  padding: 0;
 }
 
-html,
-body {
+:root, html, body {
   background-color: #030712 !important;
   background: #030712 !important;
   color: #f8fafc !important;
-  min-height: 100vh;
-  overflow-x: hidden;
-  user-select: none;
-  font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+  color-scheme: dark !important;
 }
 
 /* Custom Vision Pro high-contrast glassmorphic utilities */
 .vision-glass {
-  background: rgba(15, 23, 42, 0.85) !important;
+  background: rgba(15, 23, 42, 0.92) !important;
   backdrop-filter: blur(28px);
   -webkit-backdrop-filter: blur(28px);
   border: 1px solid rgba(255, 255, 255, 0.12) !important;
@@ -29,7 +23,7 @@ body {
 }
 
 .vision-glass-glow {
-  background: rgba(15, 23, 42, 0.95) !important;
+  background: rgba(15, 23, 42, 0.98) !important;
   backdrop-filter: blur(32px);
   -webkit-backdrop-filter: blur(32px);
   border: 1px solid rgba(6, 182, 212, 0.6) !important;

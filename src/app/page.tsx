@@ -151,13 +151,15 @@ export default function ChronoSplatHome() {
   ];
 
   return (
-    <div className="relative min-h-screen w-full bg-[#030712] text-slate-100 overflow-hidden font-sans">
-      {/* 1. Subtle, Deep Dark Spatial Radial Glow (Zero Foggy Wash) */}
-      <div className="fixed inset-0 pointer-events-none z-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.15),rgba(3,7,18,0))]" />
-      <div className="fixed inset-0 pointer-events-none z-0 bg-[radial-gradient(circle_at_20%_80%,rgba(6,182,212,0.08),transparent_50%)]" />
-
-      {/* 2. Embedded Three.js WebXR 3D Gaussian Splatting Canvas (Pitch-Black Base) */}
-      <div className="fixed inset-0 z-0 pointer-events-auto">
+    <main
+      className="min-h-screen bg-[#030712] text-slate-100 relative overflow-hidden font-sans"
+      style={{ backgroundColor: '#030712', minHeight: '100vh', color: '#f8fafc' }}
+    >
+      {/* 1. Embedded Three.js WebXR 3D Gaussian Splatting Canvas (Pitch-Black Base) */}
+      <div
+        className="fixed inset-0 z-0 pointer-events-auto bg-[#030712]"
+        style={{ backgroundColor: '#030712' }}
+      >
         <VolumetricCinemaViewer
           onPlaybackChange={(playing, progress) => {
             setIsPlaying(playing);
@@ -170,7 +172,7 @@ export default function ChronoSplatHome() {
         />
       </div>
 
-      {/* 3. Vision Pro High-Contrast Glassmorphic UI Layer */}
+      {/* 2. Vision Pro High-Contrast Glassmorphic UI Layer */}
       <div className="relative z-10 flex flex-col justify-between min-h-screen px-6 py-8 md:px-14 md:py-10 pointer-events-none">
         {/* Top Navigation & Status Bar */}
         <header className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pointer-events-auto">
@@ -203,7 +205,7 @@ export default function ChronoSplatHome() {
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-90" />
                 <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-400" />
               </span>
-              <span className="text-white font-bold">Meta Quest 3 Native</span>
+              <span className="text-slate-100 font-bold">Meta Quest 3 Native</span>
               <span className="text-slate-500">•</span>
               <span className="text-cyan-300 font-semibold">90 FPS Volumetric 6DoF</span>
             </div>
@@ -230,7 +232,7 @@ export default function ChronoSplatHome() {
             </span>
           </div>
 
-          <h1 className="text-4xl sm:text-6xl md:text-7xl font-black tracking-tight leading-[1.08] text-white drop-shadow-md">
+          <h1 className="text-4xl sm:text-6xl md:text-7xl font-black tracking-tight leading-[1.08] text-slate-100 drop-shadow-md">
             Volumetric Cinema.
             <br />
             <span className="bg-gradient-to-r from-cyan-300 via-teal-200 to-purple-300 bg-clip-text text-transparent">
@@ -252,7 +254,7 @@ export default function ChronoSplatHome() {
             >
               <div className="absolute inset-0 rounded-2xl shimmer-border" />
               <div className="relative flex items-center gap-3 px-8 py-4 rounded-2xl bg-[#030712] hover:bg-slate-950 transition">
-                <span className="text-base font-extrabold text-white tracking-wide">
+                <span className="text-base font-extrabold text-slate-100 tracking-wide">
                   Enter Volumetric XR Cinema
                 </span>
                 <ChevronRight className="w-5 h-5 text-cyan-400 group-hover:translate-x-1.5 transition duration-200" />
@@ -297,7 +299,7 @@ export default function ChronoSplatHome() {
                   <div className="w-2.5 h-2.5 rounded-full bg-cyan-400 animate-pulse shadow-sm shadow-cyan-400" />
                 </div>
 
-                <h3 className="text-base font-bold text-white mt-1">{card.title}</h3>
+                <h3 className="text-base font-bold text-slate-100 mt-1">{card.title}</h3>
                 <p className="text-xs font-semibold text-cyan-300 mb-3">{card.subtitle}</p>
 
                 {/* SVG Joint Wireframe Illustration */}
@@ -355,6 +357,6 @@ export default function ChronoSplatHome() {
           </div>
         </footer>
       </div>
-    </div>
+    </main>
   );
 }

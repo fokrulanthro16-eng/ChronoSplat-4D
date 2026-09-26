@@ -46,7 +46,7 @@ export default function VolumetricCinemaViewer({
     const camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 0.05, 50);
     camera.position.set(0, 1.25, 0.4); // Seated viewing distance
 
-    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false, powerPreference: 'high-performance' });
+    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, powerPreference: 'high-performance' });
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2.0));
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.setClearColor(0x030712, 1);
@@ -294,8 +294,8 @@ export default function VolumetricCinemaViewer({
   }, [onPlaybackChange, onAudioSnap]);
 
   return (
-    <div className="relative w-full h-full overflow-hidden">
-      <div ref={mountRef} className="w-full h-full cursor-grab active:cursor-grabbing" />
+    <div className="relative w-full h-full overflow-hidden bg-[#030712]" style={{ backgroundColor: '#030712' }}>
+      <div ref={mountRef} className="w-full h-full cursor-grab active:cursor-grabbing bg-[#030712]" style={{ backgroundColor: '#030712' }} />
     </div>
   );
 }
